@@ -163,7 +163,7 @@ export class PlaidApi {
     const responseAny = response as any;
     responseAny.data = {
       access_token: response.data.access_token,
-      item_id: response.data.connection_id,
+      item_id: response.data.financial_connection_id,
       request_id: response.data.request_id,
     } as ItemPublicTokenExchangeResponse;
 
