@@ -5,14 +5,13 @@ import {
   LinkTokenCreateRequest as LinkTokenCreateRequestPlaid,
   LinkTokenCreateResponse,
   SyncUpdatesAvailableWebhook as SyncUpdatesAvailableWebhookPlaid,
+
 } from "plaid";
 import { Configuration } from "./Configuration";
 import {
-  BasePath,
-  Configuration as FuseConfiguration,
   CreateSessionLinkTokenRequest,
   CreateSessionRequest,
-  CreateSessionResponse,
+  CreateSessionResponse, Environment,
   ExchangeSessionPublicTokenRequest,
   FuseApi,
   UnifiedWebhook,
@@ -38,49 +37,51 @@ export class PlaidApi {
   private fuseApi: FuseApi;
 
   constructor(configuration: Configuration) {
-    this.fuseApi = new FuseApi(
-      new FuseConfiguration(
-        configuration.config.basePath === "sandbox"
-          ? BasePath.SANDBOX
-          : BasePath.SANDBOX,
-        this.getHeader(
+    this.fuseApi = new FuseApi({
+      basePath: configuration.config.basePath === "sandbox"
+          ? Environment.SANDBOX
+          : Environment.SANDBOX,
+      fuseApiKey: this.getHeader(
           configuration.config.baseOptions["headers"],
-          "x-api-key"
-        ),
-        this.getHeader(
+          "fuse-api-key"
+      ),
+      fuseClientId: this.getHeader(
           configuration.config.baseOptions["headers"],
-          "x-client-id"
-        ),
-        this.getHeader(
+          "fuse-client-id"
+      ),
+      plaidClientId: this.getHeader(
           configuration.config.baseOptions["headers"],
           "plaid-client-id"
-        ),
-        this.getHeader(
+      ),
+      plaidSecret: this.getHeader(
           configuration.config.baseOptions["headers"],
           "plaid-secret"
-        ),
-        this.getHeader(
+      ),
+      tellerApplicationId: this.getHeader(
           configuration.config.baseOptions["headers"],
           "teller-application-id"
-        ),
-        this.getHeader(
+      ),
+      tellerCertificate: this.getHeader(
           configuration.config.baseOptions["headers"],
           "teller-certificate"
-        ),
-        this.getHeader(
+      ),
+      tellerPrivateKey: this.getHeader(
+          configuration.config.baseOptions["headers"],
+          "teller-private-key"
+      ),
+      tellerTokenSigningKey: this.getHeader(
           configuration.config.baseOptions["headers"],
           "teller-token-signing-key"
-        ),
-        this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "mx-client-id"
-        ),
-        this.getHeader(
+      ),
+      mxApiKey: this.getHeader(
           configuration.config.baseOptions["headers"],
           "mx-api-key"
-        )
+      ),
+      mxClientId: this.getHeader(
+          configuration.config.baseOptions["headers"],
+          "mx-api-key"
       )
-    );
+    });
     this.configuration = configuration;
   }
 
