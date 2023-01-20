@@ -9,10 +9,9 @@ import {
 } from "plaid";
 import { Configuration } from "./Configuration";
 import {
-  CreateSessionLinkTokenRequest,
+  CreateLinkTokenRequest,
   CreateSessionRequest,
-  CreateSessionResponse, Environment,
-  ExchangeSessionPublicTokenRequest,
+  CreateSessionResponse, Environment, ExchangeFinancialConnectionsPublicTokenRequest,
   FuseApi,
   UnifiedWebhook,
 } from "fuse-node";
@@ -118,7 +117,7 @@ export class PlaidApi {
 
     delete requestDeepCopy.mx;
 
-    const response = await this.fuseApi.createSessionLinkToken({
+    const response = await this.fuseApi.createLinkToken({
       user_id: linkTokenCreateRequest.user.client_user_id,
       session_client_secret: linkTokenCreateRequest.session_client_secret,
       ...(linkTokenCreateRequest.webhook && {
@@ -131,7 +130,7 @@ export class PlaidApi {
       ...(mxFieldDeepCopy && {
         mx: mxFieldDeepCopy,
       }),
-    } as CreateSessionLinkTokenRequest);
+    } as CreateLinkTokenRequest);
 
     if (response.status !== 200) {
       return response as any;
@@ -153,9 +152,9 @@ export class PlaidApi {
     itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest,
     options?: any
   ): Promise<AxiosResponse<ItemPublicTokenExchangeResponse>> => {
-    const response = await this.fuseApi.exchangeSessionPublicToken({
+    const response = await this.fuseApi.exchangeFinancialConnectionsPublicToken({
       public_token: itemPublicTokenExchangeRequest.public_token,
-    } as ExchangeSessionPublicTokenRequest);
+    } as ExchangeFinancialConnectionsPublicTokenRequest);
 
     if (response.status !== 200) {
       return response as any;
