@@ -79,7 +79,7 @@ export class PlaidApi {
       ),
       mxClientId: this.getHeader(
           configuration.config.baseOptions["headers"],
-          "mx-api-key"
+          "mx-client-id"
       )
     });
     this.configuration = configuration;
