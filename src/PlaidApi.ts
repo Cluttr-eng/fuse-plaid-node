@@ -3,7 +3,7 @@ import {
   ItemPublicTokenExchangeRequest,
   ItemPublicTokenExchangeResponse,
   LinkTokenCreateRequest as LinkTokenCreateRequestPlaid,
-  LinkTokenCreateResponse,
+  LinkTokenCreateResponse, PlaidEnvironments,
   SyncUpdatesAvailableWebhook as SyncUpdatesAvailableWebhookPlaid,
 
 } from "plaid";
@@ -37,49 +37,61 @@ export class PlaidApi {
 
   constructor(configuration: Configuration) {
     this.fuseApi = new FuseApi({
-      basePath: configuration.config.basePath === "sandbox"
+      basePath: configuration.config.basePath === PlaidEnvironments.sandbox
           ? Environment.SANDBOX
           : Environment.SANDBOX,
-      fuseApiKey: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "fuse-api-key"
-      ),
-      fuseClientId: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "fuse-client-id"
-      ),
-      plaidClientId: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "plaid-client-id"
-      ),
-      plaidSecret: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "plaid-secret"
-      ),
-      tellerApplicationId: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "teller-application-id"
-      ),
-      tellerCertificate: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "teller-certificate"
-      ),
-      tellerPrivateKey: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "teller-private-key"
-      ),
-      tellerTokenSigningKey: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "teller-token-signing-key"
-      ),
-      mxApiKey: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "mx-api-key"
-      ),
-      mxClientId: this.getHeader(
-          configuration.config.baseOptions["headers"],
-          "mx-client-id"
-      )
+      fuse: {
+        apiKey: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "fuse-api-key"
+        ),
+        clientId: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "fuse-client-id"
+        )
+      },
+      plaid: {
+        clientId: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "plaid-client-id"
+        ),
+        secret: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "plaid-secret"
+        )
+      },
+      teller: {
+        applicationId: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "teller-application-id"
+        ),
+        certificate: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "teller-certificate"
+        ),
+        privateKey: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "teller-private-key"
+        ),
+        tokenSigningKey: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "teller-token-signing-key"
+        ),
+        signingSecret: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "teller-signing-secret"
+        )
+      },
+      mx: {
+        apiKey: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "mx-api-key"
+        ),
+        clientId: this.getHeader(
+            configuration.config.baseOptions["headers"],
+            "mx-client-id"
+        )
+      }
     });
     this.configuration = configuration;
   }
