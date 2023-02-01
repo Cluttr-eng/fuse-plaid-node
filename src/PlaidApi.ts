@@ -1,28 +1,23 @@
 import {
+  Configuration,
   CountryCode,
   ItemPublicTokenExchangeRequest,
   ItemPublicTokenExchangeResponse,
   LinkTokenCreateRequest as LinkTokenCreateRequestPlaid,
-  LinkTokenCreateResponse, PlaidEnvironments,
-  SyncUpdatesAvailableWebhook as SyncUpdatesAvailableWebhookPlaid,
-
+  LinkTokenCreateResponse,
+  PlaidEnvironments,
 } from "plaid";
-import { Configuration } from "./Configuration";
 import {
   CreateLinkTokenRequest,
   CreateSessionRequest,
-  CreateSessionResponse, Environment, ExchangeFinancialConnectionsPublicTokenRequest,
+  ExchangeFinancialConnectionsPublicTokenRequest,
   FuseApi,
-  UnifiedWebhook,
 } from "fuse-node";
-import { AxiosResponse } from "axios";
+import {AxiosResponse} from "axios";
 
 export { CountryCode };
+export { Configuration }
 
-export interface SyncUpdatesAvailableWebhook
-  extends SyncUpdatesAvailableWebhookPlaid {
-  unified_webhook: UnifiedWebhook;
-}
 export interface LinkTokenCreateRequest extends LinkTokenCreateRequestPlaid {
   fuse_institution_id: string;
   session_client_secret: string;
@@ -32,89 +27,32 @@ export interface LinkTokenCreateRequest extends LinkTokenCreateRequestPlaid {
 }
 
 export class PlaidApi {
-  private configuration: Configuration;
   private fuseApi: FuseApi;
 
   constructor(configuration: Configuration) {
-    this.fuseApi = new FuseApi({
-      basePath: configuration.config.basePath === PlaidEnvironments.sandbox
-          ? Environment.SANDBOX
-          : Environment.SANDBOX,
-      fuse: {
-        apiKey: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "fuse-api-key"
-        ),
-        clientId: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "fuse-client-id"
-        )
-      },
-      plaid: {
-        clientId: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "plaid-client-id"
-        ),
-        secret: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "plaid-secret"
-        )
-      },
-      teller: {
-        applicationId: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "teller-application-id"
-        ),
-        certificate: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "teller-certificate"
-        ),
-        privateKey: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "teller-private-key"
-        ),
-        tokenSigningKey: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "teller-token-signing-key"
-        ),
-        signingSecret: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "teller-signing-secret"
-        )
-      },
-      mx: {
-        apiKey: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "mx-api-key"
-        ),
-        clientId: this.getHeader(
-            configuration.config.baseOptions["headers"],
-            "mx-client-id"
-        )
-      }
-    });
-    this.configuration = configuration;
-  }
-
-  getHeader = (headers: any, key: string): string => {
-    for (let header of Object.keys(headers)) {
-      if (header.toLowerCase() === key) {
-        return headers[header]!;
-      }
+    let basePath = "";
+    if (configuration.basePath === PlaidEnvironments.sandbox) {
+      basePath = "https://yz9sph5c42.execute-api.us-east-1.amazonaws.com/v1/"
+    } else {
+      basePath = configuration.basePath
     }
-    return undefined;
-  };
+    this.fuseApi = new FuseApi({
+      basePath: basePath,
+      baseOptions: configuration.baseOptions
+    } as any);
+  }
 
   public sessionCreate = async (
     createSessionRequest: CreateSessionRequest
-  ): Promise<AxiosResponse<CreateSessionResponse>> => {
+  ): Promise<AxiosResponse> => {
+    // @ts-ignore
     return this.fuseApi.createSession(createSessionRequest);
   };
 
   public linkTokenCreate = async (
     linkTokenCreateRequest: LinkTokenCreateRequest,
     options?: any
-  ): Promise<AxiosResponse<LinkTokenCreateResponse>> => {
+  ) => {
     const requestDeepCopy = JSON.parse(JSON.stringify(linkTokenCreateRequest));
     delete requestDeepCopy.session_client_secret;
     delete requestDeepCopy.fuse_institution_id;
@@ -164,7 +102,7 @@ export class PlaidApi {
     itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest,
     options?: any
   ): Promise<AxiosResponse<ItemPublicTokenExchangeResponse>> => {
-    const response = await this.fuseApi.exchangeFinancialConnectionsPublicToken({
+    const response = await this.fuseApi.exchangePublicToken({
       public_token: itemPublicTokenExchangeRequest.public_token,
     } as ExchangeFinancialConnectionsPublicTokenRequest);
 
@@ -180,12 +118,5 @@ export class PlaidApi {
     } as ItemPublicTokenExchangeResponse;
 
     return responseAny;
-  };
-
-  public verify = async (
-    body: SyncUpdatesAvailableWebhook,
-    headers: any
-  ): Promise<boolean> => {
-    return await this.fuseApi.verify(body.unified_webhook, headers);
   };
 }
