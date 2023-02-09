@@ -68,7 +68,7 @@ export class PlaidApi {
     delete requestDeepCopy.mx;
 
     const response = await this.fuseApi.createLinkToken({
-      user_id: linkTokenCreateRequest.user.client_user_id,
+      entity_id: linkTokenCreateRequest.user.client_user_id,
       session_client_secret: linkTokenCreateRequest.session_client_secret,
       institution_id: linkTokenCreateRequest.fuse_institution_id,
       client_name: linkTokenCreateRequest.client_name,
@@ -100,7 +100,7 @@ export class PlaidApi {
     itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest,
     options?: any
   ): Promise<AxiosResponse<ItemPublicTokenExchangeResponse>> => {
-    const response = await this.fuseApi.exchangePublicToken({
+    const response = await this.fuseApi.exchangeFinancialConnectionsPublicToken({
       public_token: itemPublicTokenExchangeRequest.public_token,
     } as ExchangeFinancialConnectionsPublicTokenRequest);
 
