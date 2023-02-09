@@ -32,7 +32,7 @@ export class PlaidApi {
   constructor(configuration: Configuration) {
     let basePath = "";
     if (configuration.basePath === PlaidEnvironments.sandbox) {
-      basePath = "https://yz9sph5c42.execute-api.us-east-1.amazonaws.com/v1/"
+      basePath = "https://sandbox-api.letsfuse.com/v1/"
     } else {
       basePath = configuration.basePath
     }
@@ -70,10 +70,8 @@ export class PlaidApi {
     const response = await this.fuseApi.createLinkToken({
       user_id: linkTokenCreateRequest.user.client_user_id,
       session_client_secret: linkTokenCreateRequest.session_client_secret,
-      ...(linkTokenCreateRequest.webhook && {
-        webhook_url: linkTokenCreateRequest.webhook,
-      }),
       institution_id: linkTokenCreateRequest.fuse_institution_id,
+      client_name: linkTokenCreateRequest.client_name,
       plaid: {
         config: requestDeepCopy,
       },
