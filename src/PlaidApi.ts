@@ -68,7 +68,9 @@ export class PlaidApi {
     delete requestDeepCopy.mx;
 
     const response = await this.fuseApi.createLinkToken({
-      entity_id: linkTokenCreateRequest.user.client_user_id,
+      entity: {
+        id: linkTokenCreateRequest.user.client_user_id
+      },
       session_client_secret: linkTokenCreateRequest.session_client_secret,
       institution_id: linkTokenCreateRequest.fuse_institution_id,
       client_name: linkTokenCreateRequest.client_name,

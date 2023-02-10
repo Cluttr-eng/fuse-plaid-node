@@ -1,6 +1,6 @@
 {
   "name": "fuse-plaid-node",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "types",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "axios": "^1.2.2",
-    "fuse-node": "1.0.22",
+    "fuse-node": "1.0.23",
     "plaid": "^12.2.0"
   },
   "repository": {
