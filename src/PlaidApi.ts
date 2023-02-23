@@ -10,7 +10,7 @@ import {
   PlaidEnvironments
 } from "plaid";
 import {
-  AccountSubType as FuseAccountSubType,
+  AccountSubtype as FuseAccountSubtype,
   AccountType as FuseAccountType,
   CreateLinkTokenRequest,
   CreateSessionRequest,
@@ -114,143 +114,143 @@ const fuseAccountTypeToPlaidType = (fuseAccountType: FuseAccountType): AccountTy
   }
 }
 
-const fuseAccountSubtypeToPlaidSubtype = (fuseAccountSubtype: FuseAccountSubType): AccountSubtype | InvestmentAccountSubtype => {
+const fuseAccountSubtypeToPlaidSubtype = (fuseAccountSubtype: FuseAccountSubtype): AccountSubtype | InvestmentAccountSubtype => {
   switch (fuseAccountSubtype) {
-    case FuseAccountSubType.Checking:
+    case FuseAccountSubtype.Checking:
       return AccountSubtype.Checking;
-    case FuseAccountSubType.Savings:
+    case FuseAccountSubtype.Savings:
       return AccountSubtype.Savings;
-    case FuseAccountSubType.Hsa:
+    case FuseAccountSubtype.Hsa:
       return AccountSubtype.Hsa;
-    case FuseAccountSubType.CertificateOfDeposit:
+    case FuseAccountSubtype.CertificateOfDeposit:
       return AccountSubtype.Cd;
-    case FuseAccountSubType.MoneyMarket:
+    case FuseAccountSubtype.MoneyMarket:
       return AccountSubtype.MoneyMarket;
-    case FuseAccountSubType.Paypal:
+    case FuseAccountSubtype.Paypal:
       return AccountSubtype.Paypal;
-    case FuseAccountSubType.Prepaid:
+    case FuseAccountSubtype.Prepaid:
       return AccountSubtype.Prepaid;
-    case FuseAccountSubType.CashManagement:
+    case FuseAccountSubtype.CashManagement:
       return AccountSubtype.CashManagement;
-    case FuseAccountSubType.Ebt:
+    case FuseAccountSubtype.Ebt:
       return AccountSubtype.Ebt;
-    case FuseAccountSubType.CreditCard:
+    case FuseAccountSubtype.CreditCard:
       return AccountSubtype.CreditCard;
-    case FuseAccountSubType.Auto:
+    case FuseAccountSubtype.Auto:
       return AccountSubtype.Auto;
-    case FuseAccountSubType.Business:
+    case FuseAccountSubtype.Business:
       return AccountSubtype.Business;
-    case FuseAccountSubType.Commercial:
+    case FuseAccountSubtype.Commercial:
       return AccountSubtype.Commercial;
-    case FuseAccountSubType.Construction:
+    case FuseAccountSubtype.Construction:
       return AccountSubtype.Construction;
-    case FuseAccountSubType.Consumer:
+    case FuseAccountSubtype.Consumer:
       return AccountSubtype.Consumer;
-    case FuseAccountSubType.HomeEquity:
+    case FuseAccountSubtype.HomeEquity:
       return AccountSubtype.HomeEquity;
-    case FuseAccountSubType.Loan:
+    case FuseAccountSubtype.Loan:
       return AccountSubtype.Loan;
-    case FuseAccountSubType.Mortgage:
+    case FuseAccountSubtype.Mortgage:
       return AccountSubtype.Mortgage;
-    case FuseAccountSubType.Overdraft:
+    case FuseAccountSubtype.Overdraft:
       return AccountSubtype.Overdraft;
-    case FuseAccountSubType.LineOfCredit:
+    case FuseAccountSubtype.LineOfCredit:
       return AccountSubtype.LineOfCredit;
-    case FuseAccountSubType.Student:
+    case FuseAccountSubtype.Student:
       return AccountSubtype.Student;
-    case FuseAccountSubType._529:
+    case FuseAccountSubtype._529:
       return AccountSubtype._529;
-    case FuseAccountSubType._401A:
+    case FuseAccountSubtype._401A:
       return AccountSubtype._401a;
-    case FuseAccountSubType._401K:
+    case FuseAccountSubtype._401K:
       return AccountSubtype._401k;
-    case FuseAccountSubType._403B:
+    case FuseAccountSubtype._403B:
       return AccountSubtype._403B;
-    case FuseAccountSubType._457B:
+    case FuseAccountSubtype._457B:
       return AccountSubtype._457b;
-    case FuseAccountSubType.Brokerage:
+    case FuseAccountSubtype.Brokerage:
       return AccountSubtype.Brokerage;
-    case FuseAccountSubType.CashIsa:
+    case FuseAccountSubtype.CashIsa:
       return AccountSubtype.CashIsa;
-    case FuseAccountSubType.CryptoExchange:
+    case FuseAccountSubtype.CryptoExchange:
       return AccountSubtype.CryptoExchange;
-    case FuseAccountSubType.EducationSavingAccount:
+    case FuseAccountSubtype.EducationSavingAccount:
       return AccountSubtype.EducationSavingsAccount;
-    case FuseAccountSubType.FixedAnnuity:
+    case FuseAccountSubtype.FixedAnnuity:
       return AccountSubtype.FixedAnnuity;
-    case FuseAccountSubType.Gic:
+    case FuseAccountSubtype.Gic:
       return AccountSubtype.Gic;
-    case FuseAccountSubType.HealthReimbursementArrangement:
+    case FuseAccountSubtype.HealthReimbursementArrangement:
       return AccountSubtype.HealthReimbursementArrangement;
-    case FuseAccountSubType.Ira:
+    case FuseAccountSubtype.Ira:
       return AccountSubtype.Ira;
-    case FuseAccountSubType.Isa:
+    case FuseAccountSubtype.Isa:
       return AccountSubtype.Isa;
-    case FuseAccountSubType.Keogh:
+    case FuseAccountSubtype.Keogh:
       return AccountSubtype.Keogh;
-    case FuseAccountSubType.Lif:
+    case FuseAccountSubtype.Lif:
       return AccountSubtype.Lif;
-    case FuseAccountSubType.LifeInsurance:
+    case FuseAccountSubtype.LifeInsurance:
       return AccountSubtype.LifeInsurance;
-    case FuseAccountSubType.Lira:
+    case FuseAccountSubtype.Lira:
       return AccountSubtype.Lira;
-    case FuseAccountSubType.Lrif:
+    case FuseAccountSubtype.Lrif:
       return AccountSubtype.Lrif;
-    case FuseAccountSubType.Lrsp:
+    case FuseAccountSubtype.Lrsp:
       return AccountSubtype.Lrsp;
-    case FuseAccountSubType.MutualFund:
+    case FuseAccountSubtype.MutualFund:
       return AccountSubtype.MutualFund;
-    case FuseAccountSubType.NonCustodialWallet:
+    case FuseAccountSubtype.NonCustodialWallet:
       return AccountSubtype.NonCustodialWallet;
-    case FuseAccountSubType.NonTaxableBrokerageAccount:
+    case FuseAccountSubtype.NonTaxableBrokerageAccount:
       return AccountSubtype.NonTaxableBrokerageAccount;
-    case FuseAccountSubType.OtherAnnuity:
+    case FuseAccountSubtype.OtherAnnuity:
       return AccountSubtype.OtherAnnuity;
-    case FuseAccountSubType.OtherInsurance:
+    case FuseAccountSubtype.OtherInsurance:
       return AccountSubtype.OtherInsurance;
-    case FuseAccountSubType.Pension:
+    case FuseAccountSubtype.Pension:
       return AccountSubtype.Pension;
-    case FuseAccountSubType.Prif:
+    case FuseAccountSubtype.Prif:
       return AccountSubtype.Prif;
-    case FuseAccountSubType.ProfitSharingPlan:
+    case FuseAccountSubtype.ProfitSharingPlan:
       return AccountSubtype.ProfitSharingPlan;
-    case FuseAccountSubType.Qshr:
+    case FuseAccountSubtype.Qshr:
       return InvestmentAccountSubtype.Qshr;
-    case FuseAccountSubType.Rdsp:
+    case FuseAccountSubtype.Rdsp:
       return AccountSubtype.Rdsp;
-    case FuseAccountSubType.Resp:
+    case FuseAccountSubtype.Resp:
       return AccountSubtype.Resp;
-    case FuseAccountSubType.Retirement:
+    case FuseAccountSubtype.Retirement:
       return AccountSubtype.Retirement;
-    case FuseAccountSubType.Rlif:
+    case FuseAccountSubtype.Rlif:
       return AccountSubtype.Rlif;
-    case FuseAccountSubType.RothIra:
+    case FuseAccountSubtype.RothIra:
       return AccountSubtype.Roth;
-    case FuseAccountSubType.Roth401K:
+    case FuseAccountSubtype.Roth401K:
       return AccountSubtype.Roth401k;
-    case FuseAccountSubType.Rrif:
+    case FuseAccountSubtype.Rrif:
       return AccountSubtype.Rrif;
-    case FuseAccountSubType.Rrsp:
+    case FuseAccountSubtype.Rrsp:
       return AccountSubtype.Rrsp;
-    case FuseAccountSubType.Sarsep:
+    case FuseAccountSubtype.Sarsep:
       return AccountSubtype.Sarsep;
-    case FuseAccountSubType.SepIra:
+    case FuseAccountSubtype.SepIra:
       return AccountSubtype.SepIra;
-    case FuseAccountSubType.SimpleIra:
+    case FuseAccountSubtype.SimpleIra:
       return AccountSubtype.SimpleIra;
-    case FuseAccountSubType.Sipp:
+    case FuseAccountSubtype.Sipp:
       return AccountSubtype.Sipp;
-    case FuseAccountSubType.StockPlan:
+    case FuseAccountSubtype.StockPlan:
       return AccountSubtype.StockPlan;
-    case FuseAccountSubType.Tfsa:
+    case FuseAccountSubtype.Tfsa:
       return AccountSubtype.Tfsa;
-    case FuseAccountSubType.Trust:
+    case FuseAccountSubtype.Trust:
       return AccountSubtype.Trust;
-    case FuseAccountSubType.Ugma:
+    case FuseAccountSubtype.Ugma:
       return AccountSubtype.Ugma;
-    case FuseAccountSubType.Utma:
+    case FuseAccountSubtype.Utma:
       return AccountSubtype.Utma;
-    case FuseAccountSubType.VariableAnnuity:
+    case FuseAccountSubtype.VariableAnnuity:
       return AccountSubtype.VariableAnnuity;
     default:
       return AccountSubtype.Other
@@ -406,11 +406,8 @@ export class PlaidApi {
     } as AccountsGetRequest);
 
     return <AuthGetResponse>{
-      item: {
-        item_id: response.data.financial_connection.id,
-        institution_id: response.data.financial_connection.institution_id
-      },
-      request_id: response.data.request_id,
+      item: accountsResponse.item,
+      accounts: accountsResponse.accounts,
       numbers: {
         ach: [{
           account_id: response.data.account_details[0].remote_id,
@@ -424,7 +421,8 @@ export class PlaidApi {
           sort_code: response.data.account_details[0].ach.bacs_routing,
         } as NumbersBACS],
       },
-      accounts: accountsResponse.accounts
+      request_id: response.data.request_id,
+
     }
   }
 
@@ -443,7 +441,7 @@ export class PlaidApi {
     return <AccountsGetResponse>{
       item: accountsResponse.item,
       accounts: accountsResponse.accounts.map(curAccount => {
-        const respectiveBalance = response.data.balances.find((curBalance) => curAccount.account_id === curBalance);
+        const respectiveBalance = response.data.balances.find((curBalance) => curAccount.account_id === curBalance.remote_account_id);
         return {
           ...curAccount,
           balances: {
