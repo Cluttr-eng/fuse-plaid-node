@@ -53,6 +53,7 @@ export interface AccountBase {
   official_name: string | null;
   type: AccountType;
   subtype: AccountSubtype | null;
+  fingerprint: string;
 }
 
 export interface Item {
@@ -388,6 +389,7 @@ export class PlaidApi {
           name: curAccount.name,
           type: fuseAccountTypeToPlaidType(curAccount.type),
           subtype: fuseAccountSubtypeToPlaidSubtype(curAccount.subtype),
+          fingerprint: curAccount.fingerprint
         } as AccountBase
       }),
       request_id: response.data.request_id
