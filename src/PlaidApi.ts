@@ -264,10 +264,15 @@ export class PlaidApi {
       request_id: response.data.request_id,
       numbers: {
         ach: [{
-
+          account_id: response.data.account_details[0].remote_id,
+          account: response.data.account_details[0].ach.account,
+          routing: response.data.account_details[0].ach.routing,
+          wire_routing:  response.data.account_details[0].ach.wire_routing
         } as NumbersACH],
         bacs: [{
-
+          account_id: response.data.account_details[0].remote_id,
+          account: response.data.account_details[0].ach.account,
+          sort_code: response.data.account_details[0].ach.bacs_routing,
         } as NumbersBACS]
       }
     }
