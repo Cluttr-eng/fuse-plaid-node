@@ -5,13 +5,13 @@ import {
   ItemPublicTokenExchangeResponse,
   LinkTokenCreateRequest as LinkTokenCreateRequestPlaid,
   LinkTokenCreateResponse,
-  PlaidEnvironments,
+  PlaidEnvironments
 } from "plaid";
 import {
   CreateLinkTokenRequest,
   CreateSessionRequest,
   ExchangeFinancialConnectionsPublicTokenRequest,
-  FuseApi,
+  FuseApi, GetFinancialConnectionsAccountDetailsRequest, GetFinancialConnectionsAccountsResponse,
 } from "fuse-node";
 import {AxiosResponse} from "axios";
 
@@ -26,13 +26,92 @@ export interface LinkTokenCreateRequest extends LinkTokenCreateRequestPlaid {
   };
 }
 
+export interface AccountsGetRequest {
+  access_token: string
+}
+
+export interface AccountBalance {
+  available: number | null;
+  current: number | null;
+  limit: number | null;
+  iso_currency_code: string | null;
+  unofficial_currency_code: string | null;
+  last_updated_datetime?: string | null;
+}
+
+export enum AccountType {
+  Investment = 'investment',
+  Credit = 'credit',
+  Depository = 'depository',
+  Loan = 'loan',
+  Brokerage = 'brokerage',
+  Other = 'other'
+}
+
+export enum AccountSubtype {
+  Checking = 'checking',
+  Savings = 'savings',
+}
+
+export interface AccountBase {
+  account_id: string;
+  balances: AccountBalance;
+  mask: string | null;
+  name: string;
+  official_name: string | null;
+  type: AccountType;
+  subtype: AccountSubtype | null;
+}
+
+export interface Item {
+  item_id: string;
+  institution_id?: string | null;
+}
+
+export interface AccountsGetResponse {
+  accounts: Array<AccountBase>;
+  item: Item;
+  request_id: string;
+}
+
+export interface NumbersACH {
+  account_id: string;
+  account: string;
+  routing: string;
+  wire_routing: string | null;
+}
+
+export interface NumbersBACS {
+  account_id: string;
+  account: string;
+  sort_code: string;
+}
+
+export interface AuthGetNumbers {
+  ach: Array<NumbersACH>;
+  bacs: Array<NumbersBACS>;
+}
+
+export interface AuthGetRequest {
+  access_token: string
+}
+
+export interface AuthGetResponse {
+  accounts: Array<AccountBase>;
+  numbers: AuthGetNumbers;
+  item: Item;
+  request_id: string;
+}
+
 export class PlaidApi {
   private fuseApi: FuseApi;
 
   constructor(configuration: Configuration) {
     let basePath = "";
-    if (configuration.basePath === PlaidEnvironments.sandbox) {
+    if (configuration.basePath === PlaidEnvironments.sandbox || configuration.basePath === PlaidEnvironments.development) {
       basePath = "https://sandbox-api.letsfuse.com/v1/"
+    } else if (configuration.basePath === PlaidEnvironments.production){
+      basePath = "https://api.letsfuse.com/v1/"
     } else {
       basePath = configuration.basePath
     }
@@ -43,10 +122,10 @@ export class PlaidApi {
   }
 
   public sessionCreate = async (
-    createSessionRequest: CreateSessionRequest
-  ): Promise<AxiosResponse> => {
-    // @ts-ignore
-    return this.fuseApi.createSession(createSessionRequest);
+    createSessionRequest: CreateSessionRequest,
+    options?: any
+  ) => {
+    return await this.fuseApi.createSession(createSessionRequest, options) as any;
   };
 
   public linkTokenCreate = async (
@@ -80,7 +159,7 @@ export class PlaidApi {
       ...(mxFieldDeepCopy && {
         mx: mxFieldDeepCopy,
       }),
-    } as CreateLinkTokenRequest);
+    } as CreateLinkTokenRequest, options);
 
     if (response.status !== 200) {
       return response as any;
@@ -104,7 +183,7 @@ export class PlaidApi {
   ): Promise<AxiosResponse<ItemPublicTokenExchangeResponse>> => {
     const response = await this.fuseApi.exchangeFinancialConnectionsPublicToken({
       public_token: itemPublicTokenExchangeRequest.public_token,
-    } as ExchangeFinancialConnectionsPublicTokenRequest);
+    } as ExchangeFinancialConnectionsPublicTokenRequest, options);
 
     if (response.status !== 200) {
       return response as any;
@@ -119,4 +198,78 @@ export class PlaidApi {
 
     return responseAny;
   };
+
+  public accountsGet = async (
+      accountsGetRequest: AccountsGetRequest,
+      options?: any
+  ) => {
+    const response = await this.fuseApi.getFinancialConnectionsAccounts(<GetFinancialConnectionsAccountDetailsRequest>{
+      access_token: accountsGetRequest.access_token
+    }, options);
+    return <AccountsGetResponse>{
+      item: {
+        item_id: response.data.financial_connection.id,
+        institution_id: response.data.financial_connection.institution_id
+      },
+      accounts: response.data.accounts.map(curAccount => {
+        return {
+          account_id: curAccount.remote_id,
+          balances: {
+            available: Number(curAccount.balance.available),
+            current: curAccount.balance.current,
+            iso_currency_code: curAccount.balance.iso_currency_code,
+            last_updated_datetime: curAccount.balance.last_updated_date,
+            limit: null,
+            unofficial_currency_code: null
+          } as AccountBalance,
+          mask: curAccount.mask,
+          name: curAccount.name,
+          type: curAccount.type,
+          subtype: curAccount.subtype
+        } as AccountBase
+      }),
+      request_id: response.data.request_id
+    }
+  }
+
+  public authGet = async (
+      authGetRequest: AuthGetRequest,
+      options?: any
+  ) => {
+    const response = await this.fuseApi.getFinancialConnectionsAccountDetails(<GetFinancialConnectionsAccountDetailsRequest>{
+      access_token: authGetRequest.access_token
+    }, options);
+    return <AuthGetResponse>{
+      item: {
+        item_id: response.data.financial_connection.id,
+        institution_id: response.data.financial_connection.institution_id
+      },
+      accounts: response.data.account_details.map(curAccountDetails => {
+        return {
+          account_id: curAccountDetails.remote_id,
+          balances: {
+            available: Number(curAccount.balance.available),
+            current: curAccount.balance.current,
+            iso_currency_code: curAccount.balance.iso_currency_code,
+            last_updated_datetime: curAccount.balance.last_updated_date,
+            limit: null,
+            unofficial_currency_code: null
+          } as AccountBalance,
+          mask: curAccount.mask,
+          name: curAccount.name,
+          type: curAccount.type,
+          subtype: curAccount.subtype
+        } as AccountBase
+      }),
+      request_id: response.data.request_id,
+      numbers: {
+        ach: [{
+
+        } as NumbersACH],
+        bacs: [{
+
+        } as NumbersBACS]
+      }
+    }
+  }
 }
