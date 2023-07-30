@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlaidApi = exports.PlaidApiFactory = exports.PlaidApiFp = exports.PlaidApiAxiosParamCreator = exports.WebhookType = exports.WebhookSource = exports.WebhookEventEnvironmentEnum = exports.Products = exports.PlaidErrorType = exports.PhoneNumberTypeEnum = exports.PaymentChannel = exports.OverrideAccountType = exports.LoanAccountSubtype = exports.InvestmentAccountSubtype = exports.FuseApiErrorType = exports.FuseApiErrorCode = exports.FuseApiErrorSourceEnum = exports.EmailTypeEnum = exports.DepositoryAccountSubtype = exports.CreditAccountSubtype = exports.CountryCode = exports.Aggregator = exports.AccountType = exports.AccountSubtype = void 0;
+exports.PlaidApi = exports.PlaidApiFactory = exports.PlaidApiFp = exports.PlaidApiAxiosParamCreator = exports.FinancialConnectionsApi = exports.FinancialConnectionsApiFactory = exports.FinancialConnectionsApiFp = exports.FinancialConnectionsApiAxiosParamCreator = exports.WebhookType = exports.WebhookSource = exports.WebhookEventEnvironmentEnum = exports.Products = exports.PlaidErrorType = exports.PhoneNumberTypeEnum = exports.PaymentChannel = exports.OverrideAccountType = exports.LoanAccountSubtype = exports.InvestmentAccountSubtype = exports.FuseApiErrorType = exports.FuseApiErrorCode = exports.FuseApiErrorSourceEnum = exports.EmailTypeEnum = exports.DepositoryAccountSubtype = exports.CreditAccountSubtype = exports.CountryCode = exports.Aggregator = exports.AccountType = exports.AccountSubtype = void 0;
 const axios_1 = require("axios");
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -515,6 +515,319 @@ exports.WebhookType = {
     AssetsReportReady: 'assets.report_ready'
 };
 /**
+ * FinancialConnectionsApi - axios parameter creator
+ * @export
+ */
+const FinancialConnectionsApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
+         * @summary Sync financial connections data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
+         * @param {object} body
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        syncFinancialConnectionsData: (fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('syncFinancialConnectionsData', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('syncFinancialConnectionsData', 'fuseApiKey', fuseApiKey);
+            // verify required parameter 'body' is not null or undefined
+            (0, common_1.assertParamExists)('syncFinancialConnectionsData', 'body', body);
+            const localVarPath = `/v1/financial_connections/sync?isPlaidRequest=true`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication fuseApiKey required
+            yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
+            // authentication fuseClientId required
+            yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(body, localVarRequestOptions, configuration);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+exports.FinancialConnectionsApiAxiosParamCreator = FinancialConnectionsApiAxiosParamCreator;
+/**
+ * FinancialConnectionsApi - functional programming interface
+ * @export
+ */
+const FinancialConnectionsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.FinancialConnectionsApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
+         * @summary Sync financial connections data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
+         * @param {object} body
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        syncFinancialConnectionsData(fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.syncFinancialConnectionsData(fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
+                return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
+            });
+        },
+    };
+};
+exports.FinancialConnectionsApiFp = FinancialConnectionsApiFp;
+/**
+ * FinancialConnectionsApi - factory interface
+ * @export
+ */
+const FinancialConnectionsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.FinancialConnectionsApiFp)(configuration);
+    return {
+        /**
+         * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
+         * @summary Sync financial connections data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
+         * @param {object} body
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        syncFinancialConnectionsData(fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.syncFinancialConnectionsData(fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+exports.FinancialConnectionsApiFactory = FinancialConnectionsApiFactory;
+/**
+ * FinancialConnectionsApi - object-oriented interface
+ * @export
+ * @class FinancialConnectionsApi
+ * @extends {BaseAPI}
+ */
+class FinancialConnectionsApi extends base_1.BaseAPI {
+    /**
+     * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
+     * @summary Sync financial connections data
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
+     * @param {object} body
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FinancialConnectionsApi
+     */
+    syncFinancialConnectionsData(fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.FinancialConnectionsApiFp)(this.configuration).syncFinancialConnectionsData(fuseClientId, fuseApiKey, body, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+exports.FinancialConnectionsApi = FinancialConnectionsApi;
+/**
  * PlaidApi - axios parameter creator
  * @export
  */
@@ -523,11 +836,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
          * @summary Retrieve real-time balance data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsBalanceGet: (accountsBalanceGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        accountsBalanceGet: (fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('accountsBalanceGet', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('accountsBalanceGet', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'accountsBalanceGetRequest' is not null or undefined
             (0, common_1.assertParamExists)('accountsBalanceGet', 'accountsBalanceGetRequest', accountsBalanceGetRequest);
             const localVarPath = `/v1/financial_connections/balances?isPlaidRequest=true`;
@@ -544,6 +890,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -557,11 +990,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
          * @summary Retrieve accounts
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AccountsGetRequest} accountsGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsGet: (accountsGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        accountsGet: (fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('accountsGet', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('accountsGet', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'accountsGetRequest' is not null or undefined
             (0, common_1.assertParamExists)('accountsGet', 'accountsGetRequest', accountsGetRequest);
             const localVarPath = `/v1/financial_connections/accounts?isPlaidRequest=true`;
@@ -578,6 +1044,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -591,11 +1144,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
          * @summary Retrieve auth data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AuthGetRequest} authGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authGet: (authGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        authGet: (fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('authGet', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('authGet', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'authGetRequest' is not null or undefined
             (0, common_1.assertParamExists)('authGet', 'authGetRequest', authGetRequest);
             const localVarPath = `/v1/financial_connections/accounts/details?isPlaidRequest=true`;
@@ -612,6 +1198,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -625,11 +1298,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
          * @summary Retrieve identity data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {IdentityGetRequest} identityGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        identityGet: (identityGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        identityGet: (fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('identityGet', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('identityGet', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'identityGetRequest' is not null or undefined
             (0, common_1.assertParamExists)('identityGet', 'identityGetRequest', identityGetRequest);
             const localVarPath = `/v1/financial_connections/owners?isPlaidRequest=true`;
@@ -646,6 +1352,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -659,11 +1452,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
          * @summary Get details of an institution
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        institutionsGetById: (institutionsGetByIdRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        institutionsGetById: (fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('institutionsGetById', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('institutionsGetById', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'institutionsGetByIdRequest' is not null or undefined
             (0, common_1.assertParamExists)('institutionsGetById', 'institutionsGetByIdRequest', institutionsGetByIdRequest);
             const localVarPath = `/v1/financial_connections/institutions/get?isPlaidRequest=true`;
@@ -680,6 +1506,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -693,11 +1606,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
          * @summary Exchange public token for an access token
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemPublicTokenExchange: (itemPublicTokenExchangeRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        itemPublicTokenExchange: (fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('itemPublicTokenExchange', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('itemPublicTokenExchange', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'itemPublicTokenExchangeRequest' is not null or undefined
             (0, common_1.assertParamExists)('itemPublicTokenExchange', 'itemPublicTokenExchangeRequest', itemPublicTokenExchangeRequest);
             const localVarPath = `/v1/financial_connections/public_token/exchange?isPlaidRequest=true`;
@@ -714,6 +1660,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -727,11 +1760,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
          * @summary Remove an Item
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {ItemRemoveRequest} itemRemoveRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemRemove: (itemRemoveRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        itemRemove: (fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('itemRemove', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('itemRemove', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'itemRemoveRequest' is not null or undefined
             (0, common_1.assertParamExists)('itemRemove', 'itemRemoveRequest', itemRemoveRequest);
             const localVarPath = `/v1/financial_connections/delete?isPlaidRequest=true`;
@@ -748,6 +1814,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -761,11 +1914,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
          * @summary Create Link Token
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {LinkTokenCreateRequest} linkTokenCreateRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        linkTokenCreate: (linkTokenCreateRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        linkTokenCreate: (fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('linkTokenCreate', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('linkTokenCreate', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'linkTokenCreateRequest' is not null or undefined
             (0, common_1.assertParamExists)('linkTokenCreate', 'linkTokenCreateRequest', linkTokenCreateRequest);
             const localVarPath = `/v1/link/token?isPlaidRequest=true`;
@@ -782,6 +1968,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -794,11 +2067,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         }),
         /**
          * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {SessionCreateRequest} [sessionCreateRequest]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sessionCreate: (sessionCreateRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        sessionCreate: (fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('sessionCreate', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('sessionCreate', 'fuseApiKey', fuseApiKey);
             const localVarPath = `/v1/session?isPlaidRequest=true`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -813,6 +2119,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -826,11 +2219,44 @@ const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          *
          * @summary Get transaction data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {TransactionsGetRequest} transactionsGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        transactionsGet: (transactionsGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        transactionsGet: (fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseClientId' is not null or undefined
+            (0, common_1.assertParamExists)('transactionsGet', 'fuseClientId', fuseClientId);
+            // verify required parameter 'fuseApiKey' is not null or undefined
+            (0, common_1.assertParamExists)('transactionsGet', 'fuseApiKey', fuseApiKey);
             // verify required parameter 'transactionsGetRequest' is not null or undefined
             (0, common_1.assertParamExists)('transactionsGet', 'transactionsGetRequest', transactionsGetRequest);
             const localVarPath = `/v1/financial_connections/transactions?isPlaidRequest=true`;
@@ -847,6 +2273,93 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseClientId != null) {
+                localVarHeaderParameter['Fuse-Client-Id'] = String(fuseClientId);
+            }
+            if (fuseApiKey != null) {
+                localVarHeaderParameter['Fuse-Api-Key'] = String(fuseApiKey);
+            }
+            if (plaidClientId != null) {
+                localVarHeaderParameter['Plaid-Client-Id'] = String(plaidClientId);
+            }
+            if (plaidSecret != null) {
+                localVarHeaderParameter['Plaid-Secret'] = String(plaidSecret);
+            }
+            if (tellerApplicationId != null) {
+                localVarHeaderParameter['Teller-Application-Id'] = String(tellerApplicationId);
+            }
+            if (tellerCertificate != null) {
+                localVarHeaderParameter['Teller-Certificate'] = String(tellerCertificate);
+            }
+            if (tellerPrivateKey != null) {
+                localVarHeaderParameter['Teller-Private-Key'] = String(tellerPrivateKey);
+            }
+            if (tellerTokenSigningKey != null) {
+                localVarHeaderParameter['Teller-Token-Signing-Key'] = String(tellerTokenSigningKey);
+            }
+            if (tellerSigningSecret != null) {
+                localVarHeaderParameter['Teller-Signing-Secret'] = String(tellerSigningSecret);
+            }
+            if (mxClientId != null) {
+                localVarHeaderParameter['Mx-Client-Id'] = String(mxClientId);
+            }
+            if (mxApiKey != null) {
+                localVarHeaderParameter['Mx-Api-Key'] = String(mxApiKey);
+            }
+            if (snaptradeClientId != null) {
+                localVarHeaderParameter['Snaptrade-Client-Id'] = String(snaptradeClientId);
+            }
+            if (snaptradeConsumerKey != null) {
+                localVarHeaderParameter['Snaptrade-Consumer-Key'] = String(snaptradeConsumerKey);
+            }
+            if (flinksCaCustomerId != null) {
+                localVarHeaderParameter['Flinks-Ca-Customer-Id'] = String(flinksCaCustomerId);
+            }
+            if (flinksUsCustomerId != null) {
+                localVarHeaderParameter['Flinks-Us-Customer-Id'] = String(flinksUsCustomerId);
+            }
+            if (flinksUsInstanceId != null) {
+                localVarHeaderParameter['Flinks-Us-Instance-Id'] = String(flinksUsInstanceId);
+            }
+            if (flinksCaInstanceId != null) {
+                localVarHeaderParameter['Flinks-Ca-Instance-Id'] = String(flinksCaInstanceId);
+            }
+            if (monoPublicKey != null) {
+                localVarHeaderParameter['Mono-Public-Key'] = String(monoPublicKey);
+            }
+            if (monoSecretKey != null) {
+                localVarHeaderParameter['Mono-Secret-Key'] = String(monoSecretKey);
+            }
+            if (monoWebhookSecret != null) {
+                localVarHeaderParameter['Mono-Webhook-Secret'] = String(monoWebhookSecret);
+            }
+            if (trueLayerClientId != null) {
+                localVarHeaderParameter['TrueLayer-Client-Id'] = String(trueLayerClientId);
+            }
+            if (trueLayerClientSecret != null) {
+                localVarHeaderParameter['TrueLayer-Client-Secret'] = String(trueLayerClientSecret);
+            }
+            if (finverseClientId != null) {
+                localVarHeaderParameter['Finverse-Client-Id'] = String(finverseClientId);
+            }
+            if (finverseClientSecret != null) {
+                localVarHeaderParameter['Finverse-Client-Secret'] = String(finverseClientSecret);
+            }
+            if (belvoSecretId != null) {
+                localVarHeaderParameter['Belvo-Secret-Id'] = String(belvoSecretId);
+            }
+            if (belvoSecretPassword != null) {
+                localVarHeaderParameter['Belvo-Secret-Password'] = String(belvoSecretPassword);
+            }
+            if (finicityPartnerSecret != null) {
+                localVarHeaderParameter['Finicity-Partner-Secret'] = String(finicityPartnerSecret);
+            }
+            if (finicityPartnerId != null) {
+                localVarHeaderParameter['Finicity-Partner-Id'] = String(finicityPartnerId);
+            }
+            if (finicityAppKey != null) {
+                localVarHeaderParameter['Finicity-App-key'] = String(finicityAppKey);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -870,129 +2383,419 @@ const PlaidApiFp = function (configuration) {
         /**
          * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
          * @summary Retrieve real-time balance data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsBalanceGet(accountsBalanceGetRequest, options) {
+        accountsBalanceGet(fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.accountsBalanceGet(accountsBalanceGetRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.accountsBalanceGet(fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
          * @summary Retrieve accounts
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AccountsGetRequest} accountsGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsGet(accountsGetRequest, options) {
+        accountsGet(fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.accountsGet(accountsGetRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.accountsGet(fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
          * @summary Retrieve auth data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AuthGetRequest} authGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authGet(authGetRequest, options) {
+        authGet(fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.authGet(authGetRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.authGet(fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
          * @summary Retrieve identity data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {IdentityGetRequest} identityGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        identityGet(identityGetRequest, options) {
+        identityGet(fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.identityGet(identityGetRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.identityGet(fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
          * @summary Get details of an institution
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        institutionsGetById(institutionsGetByIdRequest, options) {
+        institutionsGetById(fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.institutionsGetById(institutionsGetByIdRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.institutionsGetById(fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
          * @summary Exchange public token for an access token
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemPublicTokenExchange(itemPublicTokenExchangeRequest, options) {
+        itemPublicTokenExchange(fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.itemPublicTokenExchange(itemPublicTokenExchangeRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.itemPublicTokenExchange(fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
          * @summary Remove an Item
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {ItemRemoveRequest} itemRemoveRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemRemove(itemRemoveRequest, options) {
+        itemRemove(fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.itemRemove(itemRemoveRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.itemRemove(fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
          * @summary Create Link Token
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {LinkTokenCreateRequest} linkTokenCreateRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        linkTokenCreate(linkTokenCreateRequest, options) {
+        linkTokenCreate(fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.linkTokenCreate(linkTokenCreateRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.linkTokenCreate(fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {SessionCreateRequest} [sessionCreateRequest]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sessionCreate(sessionCreateRequest, options) {
+        sessionCreate(fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.sessionCreate(sessionCreateRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.sessionCreate(fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
         /**
          *
          * @summary Get transaction data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {TransactionsGetRequest} transactionsGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        transactionsGet(transactionsGetRequest, options) {
+        transactionsGet(fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.transactionsGet(transactionsGetRequest, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.transactionsGet(fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options);
                 return (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
@@ -1009,101 +2812,391 @@ const PlaidApiFactory = function (configuration, basePath, axios) {
         /**
          * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
          * @summary Retrieve real-time balance data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsBalanceGet(accountsBalanceGetRequest, options) {
-            return localVarFp.accountsBalanceGet(accountsBalanceGetRequest, options).then((request) => request(axios, basePath));
+        accountsBalanceGet(fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.accountsBalanceGet(fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
          * @summary Retrieve accounts
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AccountsGetRequest} accountsGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsGet(accountsGetRequest, options) {
-            return localVarFp.accountsGet(accountsGetRequest, options).then((request) => request(axios, basePath));
+        accountsGet(fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.accountsGet(fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
          * @summary Retrieve auth data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {AuthGetRequest} authGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authGet(authGetRequest, options) {
-            return localVarFp.authGet(authGetRequest, options).then((request) => request(axios, basePath));
+        authGet(fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.authGet(fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
          * @summary Retrieve identity data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {IdentityGetRequest} identityGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        identityGet(identityGetRequest, options) {
-            return localVarFp.identityGet(identityGetRequest, options).then((request) => request(axios, basePath));
+        identityGet(fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.identityGet(fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
          * @summary Get details of an institution
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        institutionsGetById(institutionsGetByIdRequest, options) {
-            return localVarFp.institutionsGetById(institutionsGetByIdRequest, options).then((request) => request(axios, basePath));
+        institutionsGetById(fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.institutionsGetById(fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
          * @summary Exchange public token for an access token
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemPublicTokenExchange(itemPublicTokenExchangeRequest, options) {
-            return localVarFp.itemPublicTokenExchange(itemPublicTokenExchangeRequest, options).then((request) => request(axios, basePath));
+        itemPublicTokenExchange(fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.itemPublicTokenExchange(fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
          * @summary Remove an Item
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {ItemRemoveRequest} itemRemoveRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemRemove(itemRemoveRequest, options) {
-            return localVarFp.itemRemove(itemRemoveRequest, options).then((request) => request(axios, basePath));
+        itemRemove(fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.itemRemove(fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
          * @summary Create Link Token
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {LinkTokenCreateRequest} linkTokenCreateRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        linkTokenCreate(linkTokenCreateRequest, options) {
-            return localVarFp.linkTokenCreate(linkTokenCreateRequest, options).then((request) => request(axios, basePath));
+        linkTokenCreate(fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.linkTokenCreate(fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {SessionCreateRequest} [sessionCreateRequest]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sessionCreate(sessionCreateRequest, options) {
-            return localVarFp.sessionCreate(sessionCreateRequest, options).then((request) => request(axios, basePath));
+        sessionCreate(fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options) {
+            return localVarFp.sessionCreate(fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          *
          * @summary Get transaction data
+         * @param {string} fuseClientId
+         * @param {string} fuseApiKey
          * @param {TransactionsGetRequest} transactionsGetRequest
+         * @param {string} [plaidClientId]
+         * @param {string} [plaidSecret]
+         * @param {string} [tellerApplicationId]
+         * @param {string} [tellerCertificate]
+         * @param {string} [tellerPrivateKey]
+         * @param {string} [tellerTokenSigningKey]
+         * @param {string} [tellerSigningSecret]
+         * @param {string} [mxClientId]
+         * @param {string} [mxApiKey]
+         * @param {string} [snaptradeClientId]
+         * @param {string} [snaptradeConsumerKey]
+         * @param {string} [flinksCaCustomerId]
+         * @param {string} [flinksUsCustomerId]
+         * @param {string} [flinksUsInstanceId]
+         * @param {string} [flinksCaInstanceId]
+         * @param {string} [monoPublicKey]
+         * @param {string} [monoSecretKey]
+         * @param {string} [monoWebhookSecret]
+         * @param {string} [trueLayerClientId]
+         * @param {string} [trueLayerClientSecret]
+         * @param {string} [finverseClientId]
+         * @param {string} [finverseClientSecret]
+         * @param {string} [belvoSecretId]
+         * @param {string} [belvoSecretPassword]
+         * @param {string} [finicityPartnerSecret]
+         * @param {string} [finicityPartnerId]
+         * @param {string} [finicityAppKey]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        transactionsGet(transactionsGetRequest, options) {
-            return localVarFp.transactionsGet(transactionsGetRequest, options).then((request) => request(axios, basePath));
+        transactionsGet(fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+            return localVarFp.transactionsGet(fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1118,111 +3211,401 @@ class PlaidApi extends base_1.BaseAPI {
     /**
      * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
      * @summary Retrieve real-time balance data
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    accountsBalanceGet(accountsBalanceGetRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).accountsBalanceGet(accountsBalanceGetRequest, options).then((request) => request(this.axios, this.basePath));
+    accountsBalanceGet(fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).accountsBalanceGet(fuseClientId, fuseApiKey, accountsBalanceGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
      * @summary Retrieve accounts
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {AccountsGetRequest} accountsGetRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    accountsGet(accountsGetRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).accountsGet(accountsGetRequest, options).then((request) => request(this.axios, this.basePath));
+    accountsGet(fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).accountsGet(fuseClientId, fuseApiKey, accountsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
      * @summary Retrieve auth data
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {AuthGetRequest} authGetRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    authGet(authGetRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).authGet(authGetRequest, options).then((request) => request(this.axios, this.basePath));
+    authGet(fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).authGet(fuseClientId, fuseApiKey, authGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
      * @summary Retrieve identity data
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {IdentityGetRequest} identityGetRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    identityGet(identityGetRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).identityGet(identityGetRequest, options).then((request) => request(this.axios, this.basePath));
+    identityGet(fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).identityGet(fuseClientId, fuseApiKey, identityGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
      * @summary Get details of an institution
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    institutionsGetById(institutionsGetByIdRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).institutionsGetById(institutionsGetByIdRequest, options).then((request) => request(this.axios, this.basePath));
+    institutionsGetById(fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).institutionsGetById(fuseClientId, fuseApiKey, institutionsGetByIdRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
      * @summary Exchange public token for an access token
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    itemPublicTokenExchange(itemPublicTokenExchangeRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).itemPublicTokenExchange(itemPublicTokenExchangeRequest, options).then((request) => request(this.axios, this.basePath));
+    itemPublicTokenExchange(fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).itemPublicTokenExchange(fuseClientId, fuseApiKey, itemPublicTokenExchangeRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
      * @summary Remove an Item
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {ItemRemoveRequest} itemRemoveRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    itemRemove(itemRemoveRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).itemRemove(itemRemoveRequest, options).then((request) => request(this.axios, this.basePath));
+    itemRemove(fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).itemRemove(fuseClientId, fuseApiKey, itemRemoveRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
      * @summary Create Link Token
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {LinkTokenCreateRequest} linkTokenCreateRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    linkTokenCreate(linkTokenCreateRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).linkTokenCreate(linkTokenCreateRequest, options).then((request) => request(this.axios, this.basePath));
+    linkTokenCreate(fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).linkTokenCreate(fuseClientId, fuseApiKey, linkTokenCreateRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {SessionCreateRequest} [sessionCreateRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    sessionCreate(sessionCreateRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).sessionCreate(sessionCreateRequest, options).then((request) => request(this.axios, this.basePath));
+    sessionCreate(fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).sessionCreate(fuseClientId, fuseApiKey, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, sessionCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
      * @summary Get transaction data
+     * @param {string} fuseClientId
+     * @param {string} fuseApiKey
      * @param {TransactionsGetRequest} transactionsGetRequest
+     * @param {string} [plaidClientId]
+     * @param {string} [plaidSecret]
+     * @param {string} [tellerApplicationId]
+     * @param {string} [tellerCertificate]
+     * @param {string} [tellerPrivateKey]
+     * @param {string} [tellerTokenSigningKey]
+     * @param {string} [tellerSigningSecret]
+     * @param {string} [mxClientId]
+     * @param {string} [mxApiKey]
+     * @param {string} [snaptradeClientId]
+     * @param {string} [snaptradeConsumerKey]
+     * @param {string} [flinksCaCustomerId]
+     * @param {string} [flinksUsCustomerId]
+     * @param {string} [flinksUsInstanceId]
+     * @param {string} [flinksCaInstanceId]
+     * @param {string} [monoPublicKey]
+     * @param {string} [monoSecretKey]
+     * @param {string} [monoWebhookSecret]
+     * @param {string} [trueLayerClientId]
+     * @param {string} [trueLayerClientSecret]
+     * @param {string} [finverseClientId]
+     * @param {string} [finverseClientSecret]
+     * @param {string} [belvoSecretId]
+     * @param {string} [belvoSecretPassword]
+     * @param {string} [finicityPartnerSecret]
+     * @param {string} [finicityPartnerId]
+     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    transactionsGet(transactionsGetRequest, options) {
-        return (0, exports.PlaidApiFp)(this.configuration).transactionsGet(transactionsGetRequest, options).then((request) => request(this.axios, this.basePath));
+    transactionsGet(fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options) {
+        return (0, exports.PlaidApiFp)(this.configuration).transactionsGet(fuseClientId, fuseApiKey, transactionsGetRequest, plaidClientId, plaidSecret, tellerApplicationId, tellerCertificate, tellerPrivateKey, tellerTokenSigningKey, tellerSigningSecret, mxClientId, mxApiKey, snaptradeClientId, snaptradeConsumerKey, flinksCaCustomerId, flinksUsCustomerId, flinksUsInstanceId, flinksCaInstanceId, monoPublicKey, monoSecretKey, monoWebhookSecret, trueLayerClientId, trueLayerClientSecret, finverseClientId, finverseClientSecret, belvoSecretId, belvoSecretPassword, finicityPartnerSecret, finicityPartnerId, finicityAppKey, options).then((request) => request(this.axios, this.basePath));
     }
 }
 exports.PlaidApi = PlaidApi;
