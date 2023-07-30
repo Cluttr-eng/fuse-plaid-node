@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlaidApi = exports.PlaidApiFactory = exports.PlaidApiFp = exports.PlaidApiAxiosParamCreator = exports.WebhookType = exports.WebhookEnvironmentValues = exports.Products = exports.PlaidErrorType = exports.PhoneNumberTypeEnum = exports.PaymentChannel = exports.OverrideAccountType = exports.LoanAccountSubtype = exports.InvestmentAccountSubtype = exports.FuseApiErrorType = exports.FuseApiErrorCode = exports.FuseApiErrorSourceEnum = exports.EmailTypeEnum = exports.DepositoryAccountSubtype = exports.CreditAccountSubtype = exports.CountryCode = exports.Aggregator = exports.AccountType = exports.AccountSubtype = void 0;
+exports.PlaidApi = exports.PlaidApiFactory = exports.PlaidApiFp = exports.PlaidApiAxiosParamCreator = exports.WebhookType = exports.WebhookSource = exports.WebhookEventEnvironmentEnum = exports.Products = exports.PlaidErrorType = exports.PhoneNumberTypeEnum = exports.PaymentChannel = exports.OverrideAccountType = exports.LoanAccountSubtype = exports.InvestmentAccountSubtype = exports.FuseApiErrorType = exports.FuseApiErrorCode = exports.FuseApiErrorSourceEnum = exports.EmailTypeEnum = exports.DepositoryAccountSubtype = exports.CreditAccountSubtype = exports.CountryCode = exports.Aggregator = exports.AccountType = exports.AccountSubtype = void 0;
 const axios_1 = require("axios");
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -483,29 +483,36 @@ exports.Products = {
     Assets: 'assets',
     Balance: 'balance'
 };
-/**
- * The Plaid environment the webhook was sent from
- * @export
- * @enum {string}
- */
-exports.WebhookEnvironmentValues = {
-    Development: 'development',
+exports.WebhookEventEnvironmentEnum = {
     Sandbox: 'sandbox',
     Production: 'production'
 };
 /**
- * The webhook types that can be fired by this test endpoint.
+ *
+ * @export
+ * @enum {string}
+ */
+exports.WebhookSource = {
+    Plaid: 'plaid',
+    Teller: 'teller',
+    Mx: 'mx',
+    Fuse: 'fuse',
+    Snaptrade: 'snaptrade',
+    Mono: 'mono',
+    Truelayer: 'truelayer',
+    Finverse: 'finverse'
+};
+/**
+ *
  * @export
  * @enum {string}
  */
 exports.WebhookType = {
-    Auth: 'AUTH',
-    Holdings: 'HOLDINGS',
-    InvestmentsTransactions: 'INVESTMENTS_TRANSACTIONS',
-    Item: 'ITEM',
-    Liabilities: 'LIABILITIES',
-    Transactions: 'TRANSACTIONS',
-    Assets: 'ASSETS'
+    FinancialConnectionSyncData: 'financial_connection.sync_data',
+    FinancialConnectionDisconnected: 'financial_connection.disconnected',
+    FinancialConnectionFinished: 'financial_connection.finished',
+    TransactionsUpdates: 'transactions.updates',
+    AssetsReportReady: 'assets.report_ready'
 };
 /**
  * PlaidApi - axios parameter creator
