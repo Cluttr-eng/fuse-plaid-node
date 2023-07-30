@@ -480,29 +480,36 @@ export const Products = {
     Assets: 'assets',
     Balance: 'balance'
 };
-/**
- * The Plaid environment the webhook was sent from
- * @export
- * @enum {string}
- */
-export const WebhookEnvironmentValues = {
-    Development: 'development',
+export const WebhookEventEnvironmentEnum = {
     Sandbox: 'sandbox',
     Production: 'production'
 };
 /**
- * The webhook types that can be fired by this test endpoint.
+ *
+ * @export
+ * @enum {string}
+ */
+export const WebhookSource = {
+    Plaid: 'plaid',
+    Teller: 'teller',
+    Mx: 'mx',
+    Fuse: 'fuse',
+    Snaptrade: 'snaptrade',
+    Mono: 'mono',
+    Truelayer: 'truelayer',
+    Finverse: 'finverse'
+};
+/**
+ *
  * @export
  * @enum {string}
  */
 export const WebhookType = {
-    Auth: 'AUTH',
-    Holdings: 'HOLDINGS',
-    InvestmentsTransactions: 'INVESTMENTS_TRANSACTIONS',
-    Item: 'ITEM',
-    Liabilities: 'LIABILITIES',
-    Transactions: 'TRANSACTIONS',
-    Assets: 'ASSETS'
+    FinancialConnectionSyncData: 'financial_connection.sync_data',
+    FinancialConnectionDisconnected: 'financial_connection.disconnected',
+    FinancialConnectionFinished: 'financial_connection.finished',
+    TransactionsUpdates: 'transactions.updates',
+    AssetsReportReady: 'assets.report_ready'
 };
 /**
  * PlaidApi - axios parameter creator

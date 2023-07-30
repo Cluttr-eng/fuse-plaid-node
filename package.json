@@ -1,6 +1,6 @@
 {
   "name": "fuse-plaid-node",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "OpenAPI client for fuse-plaid-node",
   "author": "OpenAPI-Generator Contributors",
   "repository": {

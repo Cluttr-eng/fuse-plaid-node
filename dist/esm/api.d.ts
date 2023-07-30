@@ -2094,29 +2094,98 @@ export interface TransactionsGetResponse {
     'request_id': string;
 }
 /**
- * The Plaid environment the webhook was sent from
+ *
  * @export
- * @enum {string}
+ * @interface WebhookEvent
  */
-export declare const WebhookEnvironmentValues: {
-    readonly Development: "development";
+export interface WebhookEvent {
+    /**
+     *
+     * @type {WebhookType}
+     * @memberof WebhookEvent
+     */
+    'type': WebhookType;
+    /**
+     * Financial connection id associated with the webhook
+     * @type {string}
+     * @memberof WebhookEvent
+     */
+    'financial_connection_id': string;
+    /**
+     *
+     * @type {string}
+     * @memberof WebhookEvent
+     */
+    'environment': WebhookEventEnvironmentEnum;
+    /**
+     *
+     * @type {WebhookSource}
+     * @memberof WebhookEvent
+     */
+    'source': WebhookSource;
+    /**
+     * Aggregator verification data needed to verify the webhook
+     * @type {string}
+     * @memberof WebhookEvent
+     */
+    'verification_token'?: string;
+    /**
+     * Exists for assets.report_ready webhooks
+     * @type {string}
+     * @memberof WebhookEvent
+     */
+    'asset_report_id'?: string;
+    /**
+     * Exists for transactions.updates webhooks. Indicates if historical transaction information (up to 24 months) is ready to be queried.
+     * @type {boolean}
+     * @memberof WebhookEvent
+     */
+    'historical_transactions_available'?: boolean;
+    /**
+     * Exists for transactions.updates webhooks. Currently only supported by Plaid.
+     * @type {Array<string>}
+     * @memberof WebhookEvent
+     */
+    'removed_transaction_ids'?: Array<string>;
+    /**
+     *
+     * @type {any}
+     * @memberof WebhookEvent
+     */
+    'remote_data': any;
+}
+export declare const WebhookEventEnvironmentEnum: {
     readonly Sandbox: "sandbox";
     readonly Production: "production";
 };
-export type WebhookEnvironmentValues = typeof WebhookEnvironmentValues[keyof typeof WebhookEnvironmentValues];
+export type WebhookEventEnvironmentEnum = typeof WebhookEventEnvironmentEnum[keyof typeof WebhookEventEnvironmentEnum];
 /**
- * The webhook types that can be fired by this test endpoint.
+ *
+ * @export
+ * @enum {string}
+ */
+export declare const WebhookSource: {
+    readonly Plaid: "plaid";
+    readonly Teller: "teller";
+    readonly Mx: "mx";
+    readonly Fuse: "fuse";
+    readonly Snaptrade: "snaptrade";
+    readonly Mono: "mono";
+    readonly Truelayer: "truelayer";
+    readonly Finverse: "finverse";
+};
+export type WebhookSource = typeof WebhookSource[keyof typeof WebhookSource];
+/**
+ *
  * @export
  * @enum {string}
  */
 export declare const WebhookType: {
-    readonly Auth: "AUTH";
-    readonly Holdings: "HOLDINGS";
-    readonly InvestmentsTransactions: "INVESTMENTS_TRANSACTIONS";
-    readonly Item: "ITEM";
-    readonly Liabilities: "LIABILITIES";
-    readonly Transactions: "TRANSACTIONS";
-    readonly Assets: "ASSETS";
+    readonly FinancialConnectionSyncData: "financial_connection.sync_data";
+    readonly FinancialConnectionDisconnected: "financial_connection.disconnected";
+    readonly FinancialConnectionFinished: "financial_connection.finished";
+    readonly TransactionsUpdates: "transactions.updates";
+    readonly AssetsReportReady: "assets.report_ready";
 };
 export type WebhookType = typeof WebhookType[keyof typeof WebhookType];
 /**
