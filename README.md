@@ -14,6 +14,7 @@ npm install fuse-node
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
 
 ### Example PlaidService class
+Have a look at the comments in the createLinkToken, getAccountBalances and getTransactions functions for important information.
 ```typescript
 import {
   AccountsGetResponse,
@@ -25,11 +26,11 @@ import {
   ItemPublicTokenExchangeRequest,
   LinkTokenCreateRequest,
   PlaidApi,
-  Products, SessionCreateRequest,
+  Products, SessionCreateRequest, Transaction,
+  TransactionsGetResponse
 } from "fuse-plaid-node";
+import { backOff } from "exponential-backoff";
 import * as dotenv from "dotenv";
-import {Store} from './store';
-
 dotenv.config();
 
 const configuration = new Configuration({
@@ -47,11 +48,9 @@ const configuration = new Configuration({
 
 
 export class PlaidService {
-  store: Store;
   plaidApi: PlaidApi
 
-  constructor(store: Store) {
-    this.store = store;
+  constructor() {
     this.plaidApi = new PlaidApi(configuration);
   }
 
@@ -71,10 +70,16 @@ export class PlaidService {
   }
 
 
-  async createLinkToken(sessionClientSecret: string, institutionId: string, userId: string) {
+  async createLinkToken(userId: string, sessionClientSecret?: string, institutionId?: string, ) {
     const linkTokenCreateRequest: LinkTokenCreateRequest = {
-      session_client_secret: sessionClientSecret,
-      institution_id: institutionId,
+      // When no client secret and institution id is passed in a plaid (not fuse) link token is returneded
+      // This allows deploying the backend changes first before the frontend changes
+      ...(sessionClientSecret && {
+        session_client_secret: sessionClientSecret,
+      }),
+      ...(institutionId && {
+        institution_id: institutionId,
+      }),
       country_codes: [CountryCode.Us],
       products: [Products.Auth],
       client_name: "my-client-name",
@@ -95,9 +100,9 @@ export class PlaidService {
 
   async exchangePublicToken(userId: string, publicToken: string) {
     const itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest =
-      {
-        public_token: publicToken,
-      };
+        {
+          public_token: publicToken,
+        };
     const response = await this.plaidApi.itemPublicTokenExchange(
         itemPublicTokenExchangeRequest
     );
@@ -105,75 +110,103 @@ export class PlaidService {
     const accessToken = response.data.access_token;
     const itemId = response.data.item_id;
 
-    await this.store.storeUserConnection(userId, accessToken, itemId);
-    await this.updateUserInfo(userId, accessToken);
     return {
       accessToken,
       itemId
     };
   }
 
-  async updateUserInfo(userId: string, accessToken: string) {
-    await this.updateAccounts(userId, accessToken);
-    await this.updateAccountDetails(userId, accessToken);
-    await this.updateAccountBalances(userId, accessToken);
-    await this.updateAccountOwners(userId, accessToken);
-    await this.updateTransactions(userId, accessToken);
-  }
-
-  async updateAccounts(userId: string, accessToken: string) {
+  async getAccounts(userId: string, accessToken: string) {
     console.log("Fetching accounts");
     const response = await this.plaidApi.accountsGet({
       access_token: accessToken,
     });
-    const accountsGetResponse = response.data as AccountsGetResponse
-    await this.store.storeAccounts(userId, accountsGetResponse.accounts);
+    return response.data as AccountsGetResponse;
   }
 
-  async updateAccountDetails(userId: string, accessToken: string) {
+  async getAccountDetails(userId: string, accessToken: string) {
     console.log("Fetching account details");
     const response = await this.plaidApi.authGet({
       access_token: accessToken,
     });
-    const authGetResponse = response.data as AuthGetResponse;
-    for (const curAch of authGetResponse.numbers.ach) {
-      await this.store.updateAccountDetails(userId, curAch.account_id, curAch.account, curAch.routing, curAch.wire_routing)
-    }
+    return response.data as AuthGetResponse;
   }
 
-  async updateAccountBalances(userId: string, accessToken: string) {
+  async getAccountBalances(userId: string, accessToken: string) {
     console.log("Fetching balances");
-    const response = await this.plaidApi.accountsBalanceGet({
+    //BALANCE CALLS MAY TIME OUT SO ADD RETRY MECHANISM
+    const response: any = await this.withBackoff(() => this.plaidApi.accountsBalanceGet({
       access_token: accessToken
-    });
-    const accountResponse = response.data as AccountsGetResponse;
-    for (const curAccount of accountResponse.accounts) {
-      await this.store.updateAccountBalance(userId, curAccount.account_id, curAccount.balances)
-    }
+    }), 3);
+    //IMPORTANT: Do not use any value other than the balances object. 
+    //If you need account level fields such as mask or name, use the accountsGet endpoint
+    return response.data as AccountsGetResponse;
   }
 
-  async updateAccountOwners(userId: string, accessToken: string) {
+  async getAccountOwners(userId: string, accessToken: string) {
     console.log("Fetching balances");
     const response = await this.plaidApi.identityGet({
       access_token: accessToken
     });
-    const accountIdentityResponse = response.data as IdentityGetResponse;
-    for (const curAccount of accountIdentityResponse.accounts) {
-      await this.store.updateAccountOwners(userId, curAccount.account_id, curAccount.owners)
-    }
+    return response.data as IdentityGetResponse;
   }
 
-  async updateTransactions(userId: string, accessToken: string) {
+  async getTransactions(userId: string, accessToken: string) {
     console.log("Fetching transactions");
     const threeMonthsAgo = new Date();
     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
 
-    const response = await this.plaidApi.transactionsGet({
-      access_token: accessToken,
-      start_date: threeMonthsAgo.toISOString().split("T")[0],
-      end_date: new Date().toISOString().split("T")[0]
+    let allTransactions: Transaction[] = [];
+    const count = 100; //MAX LIMIT OF 100
+    let page = 1; //OFFSET FIELD REPLACED WITH PAGE FIELD
+    while (true) {
+      //INITIAL CALL TO TRANSACTIONS MAY TIME OUT SO ADD RETRY MECHANISM
+      let response: any = await this.withBackoff(() => this.plaidApi.transactionsGet({
+        access_token: accessToken,
+        start_date: threeMonthsAgo.toISOString().split("T")[0],
+        end_date: new Date().toISOString().split("T")[0],
+        options: {
+          count: count,
+          page: page
+        }
+      }), 3);
+      const transactionsResponse = response.data as TransactionsGetResponse;
+      allTransactions = allTransactions.concat(transactionsResponse.transactions);
+      if (transactionsResponse.transactions.length === 0) {
+        break;
+      }
+      page++; //INCREMENT PAGE BY 1 TO GET NEXT PAGE
+    }
+    return allTransactions;
+  }
+  
+  async handleWebhookEvents(headers: IncomingHttpHeaders, body: any) {
+    if (!this.verifyPlaidWebhook(headers, body)) {
+      if (this.verifyFuseWebhook(headers, body)) {
+        //SEE https://docs.letsfuse.com/docs/webhooks-overview for Fuse webhooks overview
+      }
+      return;
+    }
+
+    //existing plaid webhook handling
+  }
+
+  verifyPlaidWebhook(headers: IncomingHttpHeaders, body: any): boolean {
+    //plaid verification logic
+    return true;
+  }
+
+  verifyFuseWebhook(headers: IncomingHttpHeaders, body: any): boolean {
+    //plaid verification logic
+    return true;
+  }
+
+  async withBackoff(request: any, attempts = 1) {
+    return backOff(() => request(), {
+      delayFirstAttempt: false,
+      numOfAttempts: attempts,
+      maxDelay: 5000,
     });
-    await this.store.upsertTransactions(userId, response.data.transactions)
   }
 }
 ```
