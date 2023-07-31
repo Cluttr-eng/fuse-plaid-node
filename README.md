@@ -72,7 +72,7 @@ export class PlaidService {
 
   async createLinkToken(userId: string, sessionClientSecret?: string, institutionId?: string, ) {
     const linkTokenCreateRequest: LinkTokenCreateRequest = {
-      // When no client secret and institution id is passed in a plaid (not fuse) link token is returneded
+      // When no client secret and institution id is passed in a plaid (not fuse) link token is returned
       // This allows deploying the backend changes first before the frontend changes
       ...(sessionClientSecret && {
         session_client_secret: sessionClientSecret,
