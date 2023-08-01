@@ -3,11 +3,11 @@
 The Fuse Plaid library provides convenient access to the Fuse REST API as a Plaid abstraction. It includes TypeScript definitions for all request params and response fields. It is intended to be used on the server.
 
 ## Documentation
-The API documentation can be found [here](https://letsfuse.readme.io/reference/post_v1-session-create).
+The API documentation can be found [here](https://docs.letsfuse.com/reference/getting-started-1).
 
 ## Installation
 ```
-npm install fuse-node
+npm install fuse-plaid-node
 ```
 
 ## Quick start
