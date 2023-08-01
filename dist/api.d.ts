@@ -2215,335 +2215,74 @@ export declare const PlaidApiAxiosParamCreator: (configuration?: Configuration) 
     /**
      * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
      * @summary Retrieve real-time balance data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    accountsBalanceGet: (fuseClientId: string, fuseApiKey: string, accountsBalanceGetRequest: AccountsBalanceGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    accountsBalanceGet: (accountsBalanceGetRequest: AccountsBalanceGetRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
      * @summary Retrieve accounts
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsGetRequest} accountsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    accountsGet: (fuseClientId: string, fuseApiKey: string, accountsGetRequest: AccountsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    accountsGet: (accountsGetRequest: AccountsGetRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
      * @summary Retrieve auth data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AuthGetRequest} authGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authGet: (fuseClientId: string, fuseApiKey: string, authGetRequest: AuthGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    authGet: (authGetRequest: AuthGetRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
      * @summary Retrieve identity data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {IdentityGetRequest} identityGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    identityGet: (fuseClientId: string, fuseApiKey: string, identityGetRequest: IdentityGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    identityGet: (identityGetRequest: IdentityGetRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
      * @summary Get details of an institution
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    institutionsGetById: (fuseClientId: string, fuseApiKey: string, institutionsGetByIdRequest: InstitutionsGetByIdRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    institutionsGetById: (institutionsGetByIdRequest: InstitutionsGetByIdRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
      * @summary Exchange public token for an access token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    itemPublicTokenExchange: (fuseClientId: string, fuseApiKey: string, itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    itemPublicTokenExchange: (itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
      * @summary Remove an Item
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemRemoveRequest} itemRemoveRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    itemRemove: (fuseClientId: string, fuseApiKey: string, itemRemoveRequest: ItemRemoveRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    itemRemove: (itemRemoveRequest: ItemRemoveRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
      * @summary Create Link Token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {LinkTokenCreateRequest} linkTokenCreateRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    linkTokenCreate: (fuseClientId: string, fuseApiKey: string, linkTokenCreateRequest: LinkTokenCreateRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    linkTokenCreate: (linkTokenCreateRequest: LinkTokenCreateRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {SessionCreateRequest} [sessionCreateRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    sessionCreate: (fuseClientId: string, fuseApiKey: string, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, sessionCreateRequest?: SessionCreateRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    sessionCreate: (sessionCreateRequest?: SessionCreateRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
@@ -2555,40 +2294,11 @@ export declare const PlaidApiAxiosParamCreator: (configuration?: Configuration) 
     /**
      *
      * @summary Get transaction data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {TransactionsGetRequest} transactionsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    transactionsGet: (fuseClientId: string, fuseApiKey: string, transactionsGetRequest: TransactionsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    transactionsGet: (transactionsGetRequest: TransactionsGetRequest, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * PlaidApi - functional programming interface
@@ -2598,335 +2308,74 @@ export declare const PlaidApiFp: (configuration?: Configuration) => {
     /**
      * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
      * @summary Retrieve real-time balance data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    accountsBalanceGet(fuseClientId: string, fuseApiKey: string, accountsBalanceGetRequest: AccountsBalanceGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccountsGetResponse>>;
+    accountsBalanceGet(accountsBalanceGetRequest: AccountsBalanceGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccountsGetResponse>>;
     /**
      * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
      * @summary Retrieve accounts
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsGetRequest} accountsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    accountsGet(fuseClientId: string, fuseApiKey: string, accountsGetRequest: AccountsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccountsGetResponse>>;
+    accountsGet(accountsGetRequest: AccountsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccountsGetResponse>>;
     /**
      * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
      * @summary Retrieve auth data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AuthGetRequest} authGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authGet(fuseClientId: string, fuseApiKey: string, authGetRequest: AuthGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthGetResponse>>;
+    authGet(authGetRequest: AuthGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthGetResponse>>;
     /**
      * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
      * @summary Retrieve identity data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {IdentityGetRequest} identityGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    identityGet(fuseClientId: string, fuseApiKey: string, identityGetRequest: IdentityGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IdentityGetResponse>>;
+    identityGet(identityGetRequest: IdentityGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IdentityGetResponse>>;
     /**
      * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
      * @summary Get details of an institution
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    institutionsGetById(fuseClientId: string, fuseApiKey: string, institutionsGetByIdRequest: InstitutionsGetByIdRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstitutionsGetByIdResponse>>;
+    institutionsGetById(institutionsGetByIdRequest: InstitutionsGetByIdRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstitutionsGetByIdResponse>>;
     /**
      * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
      * @summary Exchange public token for an access token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    itemPublicTokenExchange(fuseClientId: string, fuseApiKey: string, itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ItemPublicTokenExchangeResponse>>;
+    itemPublicTokenExchange(itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ItemPublicTokenExchangeResponse>>;
     /**
      * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
      * @summary Remove an Item
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemRemoveRequest} itemRemoveRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    itemRemove(fuseClientId: string, fuseApiKey: string, itemRemoveRequest: ItemRemoveRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ItemRemoveResponse>>;
+    itemRemove(itemRemoveRequest: ItemRemoveRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ItemRemoveResponse>>;
     /**
      * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
      * @summary Create Link Token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {LinkTokenCreateRequest} linkTokenCreateRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    linkTokenCreate(fuseClientId: string, fuseApiKey: string, linkTokenCreateRequest: LinkTokenCreateRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LinkTokenCreateResponse>>;
+    linkTokenCreate(linkTokenCreateRequest: LinkTokenCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LinkTokenCreateResponse>>;
     /**
      * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {SessionCreateRequest} [sessionCreateRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    sessionCreate(fuseClientId: string, fuseApiKey: string, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, sessionCreateRequest?: SessionCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SessionCreateResponse>>;
+    sessionCreate(sessionCreateRequest?: SessionCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SessionCreateResponse>>;
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
@@ -2938,40 +2387,11 @@ export declare const PlaidApiFp: (configuration?: Configuration) => {
     /**
      *
      * @summary Get transaction data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {TransactionsGetRequest} transactionsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    transactionsGet(fuseClientId: string, fuseApiKey: string, transactionsGetRequest: TransactionsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TransactionsGetResponse>>;
+    transactionsGet(transactionsGetRequest: TransactionsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TransactionsGetResponse>>;
 };
 /**
  * PlaidApi - factory interface
@@ -2981,335 +2401,74 @@ export declare const PlaidApiFactory: (configuration?: Configuration, basePath?:
     /**
      * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
      * @summary Retrieve real-time balance data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    accountsBalanceGet(fuseClientId: string, fuseApiKey: string, accountsBalanceGetRequest: AccountsBalanceGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<AccountsGetResponse>;
+    accountsBalanceGet(accountsBalanceGetRequest: AccountsBalanceGetRequest, options?: any): AxiosPromise<AccountsGetResponse>;
     /**
      * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
      * @summary Retrieve accounts
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsGetRequest} accountsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    accountsGet(fuseClientId: string, fuseApiKey: string, accountsGetRequest: AccountsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<AccountsGetResponse>;
+    accountsGet(accountsGetRequest: AccountsGetRequest, options?: any): AxiosPromise<AccountsGetResponse>;
     /**
      * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
      * @summary Retrieve auth data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AuthGetRequest} authGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authGet(fuseClientId: string, fuseApiKey: string, authGetRequest: AuthGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<AuthGetResponse>;
+    authGet(authGetRequest: AuthGetRequest, options?: any): AxiosPromise<AuthGetResponse>;
     /**
      * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
      * @summary Retrieve identity data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {IdentityGetRequest} identityGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    identityGet(fuseClientId: string, fuseApiKey: string, identityGetRequest: IdentityGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<IdentityGetResponse>;
+    identityGet(identityGetRequest: IdentityGetRequest, options?: any): AxiosPromise<IdentityGetResponse>;
     /**
      * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
      * @summary Get details of an institution
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    institutionsGetById(fuseClientId: string, fuseApiKey: string, institutionsGetByIdRequest: InstitutionsGetByIdRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<InstitutionsGetByIdResponse>;
+    institutionsGetById(institutionsGetByIdRequest: InstitutionsGetByIdRequest, options?: any): AxiosPromise<InstitutionsGetByIdResponse>;
     /**
      * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
      * @summary Exchange public token for an access token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    itemPublicTokenExchange(fuseClientId: string, fuseApiKey: string, itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<ItemPublicTokenExchangeResponse>;
+    itemPublicTokenExchange(itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, options?: any): AxiosPromise<ItemPublicTokenExchangeResponse>;
     /**
      * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
      * @summary Remove an Item
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemRemoveRequest} itemRemoveRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    itemRemove(fuseClientId: string, fuseApiKey: string, itemRemoveRequest: ItemRemoveRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<ItemRemoveResponse>;
+    itemRemove(itemRemoveRequest: ItemRemoveRequest, options?: any): AxiosPromise<ItemRemoveResponse>;
     /**
      * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
      * @summary Create Link Token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {LinkTokenCreateRequest} linkTokenCreateRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    linkTokenCreate(fuseClientId: string, fuseApiKey: string, linkTokenCreateRequest: LinkTokenCreateRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<LinkTokenCreateResponse>;
+    linkTokenCreate(linkTokenCreateRequest: LinkTokenCreateRequest, options?: any): AxiosPromise<LinkTokenCreateResponse>;
     /**
      * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {SessionCreateRequest} [sessionCreateRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    sessionCreate(fuseClientId: string, fuseApiKey: string, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, sessionCreateRequest?: SessionCreateRequest, options?: any): AxiosPromise<SessionCreateResponse>;
+    sessionCreate(sessionCreateRequest?: SessionCreateRequest, options?: any): AxiosPromise<SessionCreateResponse>;
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
@@ -3321,40 +2480,11 @@ export declare const PlaidApiFactory: (configuration?: Configuration, basePath?:
     /**
      *
      * @summary Get transaction data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {TransactionsGetRequest} transactionsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    transactionsGet(fuseClientId: string, fuseApiKey: string, transactionsGetRequest: TransactionsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: any): AxiosPromise<TransactionsGetResponse>;
+    transactionsGet(transactionsGetRequest: TransactionsGetRequest, options?: any): AxiosPromise<TransactionsGetResponse>;
 };
 /**
  * PlaidApi - object-oriented interface
@@ -3366,344 +2496,83 @@ export declare class PlaidApi extends BaseAPI {
     /**
      * The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item\'s accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.
      * @summary Retrieve real-time balance data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsBalanceGetRequest} accountsBalanceGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    accountsBalanceGet(fuseClientId: string, fuseApiKey: string, accountsBalanceGetRequest: AccountsBalanceGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<AccountsGetResponse, any>>;
+    accountsBalanceGet(accountsBalanceGetRequest: AccountsBalanceGetRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<AccountsGetResponse, any>>;
     /**
      * The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. For items that went through the updated account selection pane, this endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link\'s [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.
      * @summary Retrieve accounts
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AccountsGetRequest} accountsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    accountsGet(fuseClientId: string, fuseApiKey: string, accountsGetRequest: AccountsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<AccountsGetResponse, any>>;
+    accountsGet(accountsGetRequest: AccountsGetRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<AccountsGetResponse, any>>;
     /**
      * The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item\'s checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).
      * @summary Retrieve auth data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {AuthGetRequest} authGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    authGet(fuseClientId: string, fuseApiKey: string, authGetRequest: AuthGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<AuthGetResponse, any>>;
+    authGet(authGetRequest: AuthGetRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<AuthGetResponse, any>>;
     /**
      * The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).
      * @summary Retrieve identity data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {IdentityGetRequest} identityGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    identityGet(fuseClientId: string, fuseApiKey: string, identityGetRequest: IdentityGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<IdentityGetResponse, any>>;
+    identityGet(identityGetRequest: IdentityGetRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<IdentityGetResponse, any>>;
     /**
      * Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.
      * @summary Get details of an institution
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {InstitutionsGetByIdRequest} institutionsGetByIdRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    institutionsGetById(fuseClientId: string, fuseApiKey: string, institutionsGetByIdRequest: InstitutionsGetByIdRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<InstitutionsGetByIdResponse, any>>;
+    institutionsGetById(institutionsGetByIdRequest: InstitutionsGetByIdRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<InstitutionsGetByIdResponse, any>>;
     /**
      * Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.
      * @summary Exchange public token for an access token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemPublicTokenExchangeRequest} itemPublicTokenExchangeRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    itemPublicTokenExchange(fuseClientId: string, fuseApiKey: string, itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ItemPublicTokenExchangeResponse, any>>;
+    itemPublicTokenExchange(itemPublicTokenExchangeRequest: ItemPublicTokenExchangeRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ItemPublicTokenExchangeResponse, any>>;
     /**
      * The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution\'s OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.
      * @summary Remove an Item
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {ItemRemoveRequest} itemRemoveRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    itemRemove(fuseClientId: string, fuseApiKey: string, itemRemoveRequest: ItemRemoveRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ItemRemoveResponse, any>>;
+    itemRemove(itemRemoveRequest: ItemRemoveRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ItemRemoveResponse, any>>;
     /**
      * The `/link/token/create` endpoint creates a `link_token`, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a `public_token`, which can then be exchanged for an `access_token` via `/item/public_token/exchange` as part of the main Link flow.  A `link_token` generated by `/link/token/create` is also used to initialize other Link flows, such as the update mode flow for tokens with expired credentials, or the Payment Initiation (Europe) flow.
      * @summary Create Link Token
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {LinkTokenCreateRequest} linkTokenCreateRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    linkTokenCreate(fuseClientId: string, fuseApiKey: string, linkTokenCreateRequest: LinkTokenCreateRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<LinkTokenCreateResponse, any>>;
+    linkTokenCreate(linkTokenCreateRequest: LinkTokenCreateRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<LinkTokenCreateResponse, any>>;
     /**
      * Creates a session that returns a client_secret which is required as a parameter when initializing the Fuse SDK.
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {SessionCreateRequest} [sessionCreateRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    sessionCreate(fuseClientId: string, fuseApiKey: string, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, sessionCreateRequest?: SessionCreateRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SessionCreateResponse, any>>;
+    sessionCreate(sessionCreateRequest?: SessionCreateRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SessionCreateResponse, any>>;
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
@@ -3716,39 +2585,10 @@ export declare class PlaidApi extends BaseAPI {
     /**
      *
      * @summary Get transaction data
-     * @param {string} fuseClientId
-     * @param {string} fuseApiKey
      * @param {TransactionsGetRequest} transactionsGetRequest
-     * @param {string} [plaidClientId]
-     * @param {string} [plaidSecret]
-     * @param {string} [tellerApplicationId]
-     * @param {string} [tellerCertificate]
-     * @param {string} [tellerPrivateKey]
-     * @param {string} [tellerTokenSigningKey]
-     * @param {string} [tellerSigningSecret]
-     * @param {string} [mxClientId]
-     * @param {string} [mxApiKey]
-     * @param {string} [snaptradeClientId]
-     * @param {string} [snaptradeConsumerKey]
-     * @param {string} [flinksCaCustomerId]
-     * @param {string} [flinksUsCustomerId]
-     * @param {string} [flinksUsInstanceId]
-     * @param {string} [flinksCaInstanceId]
-     * @param {string} [monoPublicKey]
-     * @param {string} [monoSecretKey]
-     * @param {string} [monoWebhookSecret]
-     * @param {string} [trueLayerClientId]
-     * @param {string} [trueLayerClientSecret]
-     * @param {string} [finverseClientId]
-     * @param {string} [finverseClientSecret]
-     * @param {string} [belvoSecretId]
-     * @param {string} [belvoSecretPassword]
-     * @param {string} [finicityPartnerSecret]
-     * @param {string} [finicityPartnerId]
-     * @param {string} [finicityAppKey]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    transactionsGet(fuseClientId: string, fuseApiKey: string, transactionsGetRequest: TransactionsGetRequest, plaidClientId?: string, plaidSecret?: string, tellerApplicationId?: string, tellerCertificate?: string, tellerPrivateKey?: string, tellerTokenSigningKey?: string, tellerSigningSecret?: string, mxClientId?: string, mxApiKey?: string, snaptradeClientId?: string, snaptradeConsumerKey?: string, flinksCaCustomerId?: string, flinksUsCustomerId?: string, flinksUsInstanceId?: string, flinksCaInstanceId?: string, monoPublicKey?: string, monoSecretKey?: string, monoWebhookSecret?: string, trueLayerClientId?: string, trueLayerClientSecret?: string, finverseClientId?: string, finverseClientSecret?: string, belvoSecretId?: string, belvoSecretPassword?: string, finicityPartnerSecret?: string, finicityPartnerId?: string, finicityAppKey?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TransactionsGetResponse, any>>;
+    transactionsGet(transactionsGetRequest: TransactionsGetRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<TransactionsGetResponse, any>>;
 }
