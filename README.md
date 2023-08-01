@@ -15,6 +15,7 @@ Documentation for each method, request param, and response field are available i
 
 ### Example PlaidService class
 Have a look at the comments in the createLinkToken, getAccountBalances and getTransactions functions for important information.
+A new createSession function is also required.
 ```typescript
 import {
   AccountsGetResponse,
