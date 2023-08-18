@@ -44,12 +44,6 @@ export interface AccountBalance {
      */
     'current': number | null;
     /**
-     * For `credit`-type accounts, this represents the credit limit.  For `depository`-type accounts, this represents the pre-arranged overdraft limit, which is common for current (checking) accounts in Europe.  In North America, this field is typically only available for `credit`-type accounts.
-     * @type {number}
-     * @memberof AccountBalance
-     */
-    'limit': number | null;
-    /**
      * The ISO-4217 currency code of the balance. Always null if `unofficial_currency_code` is non-null.
      * @type {string}
      * @memberof AccountBalance
@@ -2715,11 +2709,14 @@ export const PlaidApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
          * @summary Sync financial connections data
+         * @param {string} fuseVerification 
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        syncFinancialConnectionsData: async (body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        syncFinancialConnectionsData: async (fuseVerification: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'fuseVerification' is not null or undefined
+            assertParamExists('syncFinancialConnectionsData', 'fuseVerification', fuseVerification)
             // verify required parameter 'body' is not null or undefined
             assertParamExists('syncFinancialConnectionsData', 'body', body)
             const localVarPath = `/v1/financial_connections/sync`;
@@ -2739,6 +2736,10 @@ export const PlaidApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication fuseClientId required
             await setApiKeyToObject(localVarHeaderParameter, "Fuse-Client-Id", configuration)
+
+            if (fuseVerification != null) {
+                localVarHeaderParameter['Fuse-Verification'] = String(fuseVerification);
+            }
 
 
     
@@ -2907,12 +2908,13 @@ export const PlaidApiFp = function(configuration?: Configuration) {
         /**
          * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
          * @summary Sync financial connections data
+         * @param {string} fuseVerification 
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async syncFinancialConnectionsData(body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SyncFinancialConnectionsDataResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.syncFinancialConnectionsData(body, options);
+        async syncFinancialConnectionsData(fuseVerification: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SyncFinancialConnectionsDataResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.syncFinancialConnectionsData(fuseVerification, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3028,12 +3030,13 @@ export const PlaidApiFactory = function (configuration?: Configuration, basePath
         /**
          * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
          * @summary Sync financial connections data
+         * @param {string} fuseVerification 
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        syncFinancialConnectionsData(body: object, options?: any): AxiosPromise<SyncFinancialConnectionsDataResponse> {
-            return localVarFp.syncFinancialConnectionsData(body, options).then((request) => request(axios, basePath));
+        syncFinancialConnectionsData(fuseVerification: string, body: object, options?: any): AxiosPromise<SyncFinancialConnectionsDataResponse> {
+            return localVarFp.syncFinancialConnectionsData(fuseVerification, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3165,13 +3168,14 @@ export class PlaidApi extends BaseAPI {
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
+     * @param {string} fuseVerification 
      * @param {object} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    public syncFinancialConnectionsData(body: object, options?: AxiosRequestConfig) {
-        return PlaidApiFp(this.configuration).syncFinancialConnectionsData(body, options).then((request) => request(this.axios, this.basePath));
+    public syncFinancialConnectionsData(fuseVerification: string, body: object, options?: AxiosRequestConfig) {
+        return PlaidApiFp(this.configuration).syncFinancialConnectionsData(fuseVerification, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
