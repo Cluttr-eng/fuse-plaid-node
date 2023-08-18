@@ -823,11 +823,14 @@ export const PlaidApiAxiosParamCreator = function (configuration) {
         /**
          * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
          * @summary Sync financial connections data
+         * @param {string} fuseVerification
          * @param {object} body
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        syncFinancialConnectionsData: (body, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        syncFinancialConnectionsData: (fuseVerification, body, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fuseVerification' is not null or undefined
+            assertParamExists('syncFinancialConnectionsData', 'fuseVerification', fuseVerification);
             // verify required parameter 'body' is not null or undefined
             assertParamExists('syncFinancialConnectionsData', 'body', body);
             const localVarPath = `/v1/financial_connections/sync`;
@@ -844,6 +847,9 @@ export const PlaidApiAxiosParamCreator = function (configuration) {
             yield setApiKeyToObject(localVarHeaderParameter, "Fuse-Api-Key", configuration);
             // authentication fuseClientId required
             yield setApiKeyToObject(localVarHeaderParameter, "Fuse-Client-Id", configuration);
+            if (fuseVerification != null) {
+                localVarHeaderParameter['Fuse-Verification'] = String(fuseVerification);
+            }
             localVarHeaderParameter['Content-Type'] = 'application/json';
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1016,13 +1022,14 @@ export const PlaidApiFp = function (configuration) {
         /**
          * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
          * @summary Sync financial connections data
+         * @param {string} fuseVerification
          * @param {object} body
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        syncFinancialConnectionsData(body, options) {
+        syncFinancialConnectionsData(fuseVerification, body, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.syncFinancialConnectionsData(body, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.syncFinancialConnectionsData(fuseVerification, body, options);
                 return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             });
         },
@@ -1140,12 +1147,13 @@ export const PlaidApiFactory = function (configuration, basePath, axios) {
         /**
          * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
          * @summary Sync financial connections data
+         * @param {string} fuseVerification
          * @param {object} body
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        syncFinancialConnectionsData(body, options) {
-            return localVarFp.syncFinancialConnectionsData(body, options).then((request) => request(axios, basePath));
+        syncFinancialConnectionsData(fuseVerification, body, options) {
+            return localVarFp.syncFinancialConnectionsData(fuseVerification, body, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1267,13 +1275,14 @@ export class PlaidApi extends BaseAPI {
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
+     * @param {string} fuseVerification
      * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    syncFinancialConnectionsData(body, options) {
-        return PlaidApiFp(this.configuration).syncFinancialConnectionsData(body, options).then((request) => request(this.axios, this.basePath));
+    syncFinancialConnectionsData(fuseVerification, body, options) {
+        return PlaidApiFp(this.configuration).syncFinancialConnectionsData(fuseVerification, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *

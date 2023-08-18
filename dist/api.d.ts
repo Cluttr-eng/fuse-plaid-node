@@ -33,12 +33,6 @@ export interface AccountBalance {
      */
     'current': number | null;
     /**
-     * For `credit`-type accounts, this represents the credit limit.  For `depository`-type accounts, this represents the pre-arranged overdraft limit, which is common for current (checking) accounts in Europe.  In North America, this field is typically only available for `credit`-type accounts.
-     * @type {number}
-     * @memberof AccountBalance
-     */
-    'limit': number | null;
-    /**
      * The ISO-4217 currency code of the balance. Always null if `unofficial_currency_code` is non-null.
      * @type {string}
      * @memberof AccountBalance
@@ -2286,11 +2280,12 @@ export declare const PlaidApiAxiosParamCreator: (configuration?: Configuration) 
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
+     * @param {string} fuseVerification
      * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    syncFinancialConnectionsData: (body: object, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    syncFinancialConnectionsData: (fuseVerification: string, body: object, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
      * @summary Get transaction data
@@ -2379,11 +2374,12 @@ export declare const PlaidApiFp: (configuration?: Configuration) => {
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
+     * @param {string} fuseVerification
      * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    syncFinancialConnectionsData(body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SyncFinancialConnectionsDataResponse>>;
+    syncFinancialConnectionsData(fuseVerification: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SyncFinancialConnectionsDataResponse>>;
     /**
      *
      * @summary Get transaction data
@@ -2472,11 +2468,12 @@ export declare const PlaidApiFactory: (configuration?: Configuration, basePath?:
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
+     * @param {string} fuseVerification
      * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    syncFinancialConnectionsData(body: object, options?: any): AxiosPromise<SyncFinancialConnectionsDataResponse>;
+    syncFinancialConnectionsData(fuseVerification: string, body: object, options?: any): AxiosPromise<SyncFinancialConnectionsDataResponse>;
     /**
      *
      * @summary Get transaction data
@@ -2576,12 +2573,13 @@ export declare class PlaidApi extends BaseAPI {
     /**
      * Call this endpoint upon receiving a financial_connection.sync_data webhook. This will keep the financial connections data up to date.
      * @summary Sync financial connections data
+     * @param {string} fuseVerification
      * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaidApi
      */
-    syncFinancialConnectionsData(body: object, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SyncFinancialConnectionsDataResponse, any>>;
+    syncFinancialConnectionsData(fuseVerification: string, body: object, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<SyncFinancialConnectionsDataResponse, any>>;
     /**
      *
      * @summary Get transaction data
